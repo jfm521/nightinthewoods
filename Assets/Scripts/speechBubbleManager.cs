@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.IO;
 
 public class speechBubbleManager : MonoBehaviour
 {
@@ -28,11 +29,16 @@ public class speechBubbleManager : MonoBehaviour
     public string[] playerSentences;
     private int index;
 
+    private string dialogPath = "Assets/Dialogs/TestDialog.txt";
+    private StreamReader reader;
+    string lineText;
+    public Color[] colorArr = new Color[4];//Colors of text for characters
+
     // Start is called before the first frame update
     void Start()
     {
         //starts typing the sentences
-        StartCoroutine(Type()); 
+        //StartCoroutine(Type()); 
 
         //makes all the speech bubbles + text invisible
         //playerBubble.SetActive(false);
@@ -41,45 +47,45 @@ public class speechBubbleManager : MonoBehaviour
         sentence.SetActive(false);
         miniBubble.SetActive(false);
         dots.SetActive(false);
+
+        colorArr[0] = new Color(0,0,0);
+        colorArr[1] = new Color(0.8f,0.3f,0.086f); //Hard Coded Angus Color
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X) && touched == true){ //if x is pressed and is touching the npc
-           
-            Debug.Log("show player bubble");
+        if (Input.GetKeyDown(KeyCode.X)){ //if x is pressed and is touching the npc
+            if(touched && !speechVisible)
+            {
+                reader = new StreamReader(dialogPath); //Reader read dialog txt
+                lineText = reader.ReadLine();
 
-            //show the big bubble
-            bigBubble.SetActive(true);
-            sentence.SetActive(true);
+                Debug.Log("show player bubble");
 
-            //show big player bubble
-            //playerBubble.SetActive(true);
-            //playerSpeech.SetActive(true);
+                //show the big bubble
+                bigBubble.SetActive(true);
+                sentence.SetActive(true);
 
-            //hide the small bubble
-            miniBubble.SetActive(false);
-            dots.SetActive(false);
-            speechVisible = true;
+                //show big player bubble
+                //playerBubble.SetActive(true);
+                //playerSpeech.SetActive(true);
+
+                //hide the small bubble
+                miniBubble.SetActive(false);
+                dots.SetActive(false);
+                speechVisible = true;
+            }
+            if(speechVisible && canContinue){
+                Debug.Log("speaking");
+                NextSentence();
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.X) && speechVisible == true && canContinue == true){ //if x is pressed again
-            //NextPlayerSentence(); //start typing next sentence
-            Debug.Log("speaking");
-            NextSentence();
-        }
-
-        if(textDisplay.text == sentences[4]){
-            //hide the big bubble too
-            bigBubble.SetActive(false);
-            sentence.SetActive(false);
-        }
-
-        if(textDisplay.text == sentences[index]){ //once text has finished completely
-            Debug.Log("canContinue is: " + canContinue);
+        if(textDisplay.text == lineText){ //once text has finished completely
             canContinue = true;
         }
+        Debug.Log("canContinue is: " + canContinue);
     }
 
     void OnTriggerEnter2D(Collider2D other){ 
@@ -112,7 +118,7 @@ public class speechBubbleManager : MonoBehaviour
 
     //THIS IS ALL NPC TALKING STUFF
     IEnumerator Type(){
-        foreach(char letter in sentences[index].ToCharArray()){ //gets each letter in sentence
+        foreach(char letter in lineText.ToCharArray()){ //gets each letter in sentence
             textDisplay.text += letter; //adds each letter to text
             yield return new WaitForSeconds(typingSpeed); //sets speed of scroll
         }
@@ -123,12 +129,30 @@ public class speechBubbleManager : MonoBehaviour
         Debug.Log("canContinue is: " + canContinue);
         canContinue = false; //stops the player from going to the next sentence before its done
 
-        if(index < sentences.Length - 1){ 
-            index++; //get next sentence
+        lineText = reader.ReadLine(); //get next sentence
+        if(lineText != "<END>"){ 
+            if(lineText.Substring(0,2) == "M:") //Mae's line
+            {
+                textDisplay.color = colorArr[0];
+            }
+            else if(lineText.Substring(0,2) == "A:") //Angus's line
+            {
+                textDisplay.color = colorArr[1];
+            }
+            lineText = lineText.Substring(2);
+
             textDisplay.text = ""; //set text back to nothing
             StartCoroutine(Type()); //start typing new sentences
-        } else {
-            textDisplay.text = ""; //otherwise just keep text empty
+        }
+        else { //End of dialog
+            reader.Close(); //Close reader
+            
+            //hide the big bubble too
+            bigBubble.SetActive(false);
+            sentence.SetActive(false);
+            canContinue = true;
+            speechVisible = false;
         }
     }
 }
+

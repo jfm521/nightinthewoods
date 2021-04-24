@@ -427,7 +427,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541668059}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.32, y: -2.81, z: 0}
+  m_LocalPosition: {x: 3.37, y: 2, z: 0}
   m_LocalScale: {x: 0.43423, y: 0.7738365, z: 0.43423}
   m_Children:
   - {fileID: 752940196}
@@ -471,7 +471,7 @@ MonoBehaviour:
   playerTriangle: {fileID: 0}
   textDisplay: {fileID: 1142751973}
   playerTextDisplay: {fileID: 1041903319}
-  typingSpeed: 0.05
+  typingSpeed: 0.02
   sentences:
   - "\u2800\u2800   "
   - IT'S 10:45. IT'S CLOSED.

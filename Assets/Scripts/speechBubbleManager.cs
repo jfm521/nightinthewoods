@@ -31,7 +31,7 @@ public class speechBubbleManager : MonoBehaviour
 
     private string dialogPath = "Assets/Dialogs/TestDialog.txt";
     private StreamReader reader;
-    string lineText;
+    string lineText = "-";
     public Color[] colorArr = new Color[4];//Colors of text for characters
 
     // Start is called before the first frame update

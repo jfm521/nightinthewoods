@@ -471,7 +471,7 @@ MonoBehaviour:
   playerTriangle: {fileID: 0}
   textDisplay: {fileID: 1142751973}
   playerTextDisplay: {fileID: 1041903319}
-  typingSpeed: 0.02
+  typingSpeed: 0.03
   sentences:
   - "\u2800\u2800   "
   - IT'S 10:45. IT'S CLOSED.
@@ -482,6 +482,11 @@ MonoBehaviour:
   - 
   - EXCUSE ME, BUT WHERE I EVERYBODY?
   - ISN'T THERE SUPPOSED TO BE SOMEONE AT THE DESK?
+  colorArr:
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &752940195
 GameObject:
   m_ObjectHideFlags: 0

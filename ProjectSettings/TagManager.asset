@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Floor
   - background
+  - Pointer
+  - Star
+  - TalkTrigger
   layers:
   - Default
   - TransparentFX

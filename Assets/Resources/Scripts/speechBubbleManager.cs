@@ -8,27 +8,23 @@ public class speechBubbleManager : MonoBehaviour
 {
 
     //gameobject stuff to turn bubble + text sprites on and off
-    public GameObject miniBubble, bigBubble, sentence, dots, NPCtriangle, playerTriangle;
+    public GameObject miniBubble, bigBubble, sentence, dots, NPCtriangle, playerTriangle, dialogBox;
 
-    //dialogue states
-    /*bool playerSpoke0 = true;
-    bool playerSpoke1 = false;
-    bool NPCSpoke1 = false;
-    bool playerSpoke2 = false;
-    bool NPCSpoke2 = false;*/
+    public Vector3 dialogBoxOffSet = new Vector3(0,1,0);
+    public GameObject talkingObj;
+    //dialogBox has to be set in inspector
 
     //visibility checkers
     bool touched = false; //if player is touching npc
+    GameObject touchingObj;
     bool speechVisible = false; //if the bubble and text is now visible, ready to start talking
     bool canContinue = true; //if text has finished and can continue
 
     //these are all the text + sentence variables
     public TextMeshProUGUI textDisplay, playerTextDisplay;
-    public float typingSpeed;
-    public string[] sentences;
-    public string[] playerSentences;
-    private int index;
-
+    private float typingSpeedNormal = 0.04f;
+    private float typingSpeedFast = 0.008f; 
+    private float typingSpeed; //typing speed set in start, spaghetti typing speed solution
     private string dialogPath = "Assets/Dialogs/TestDialog.txt";
     private StreamReader reader;
     string lineText = "-";
@@ -37,8 +33,6 @@ public class speechBubbleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //starts typing the sentences
-        //StartCoroutine(Type()); 
 
         //makes all the speech bubbles + text invisible
         //playerBubble.SetActive(false);
@@ -48,8 +42,10 @@ public class speechBubbleManager : MonoBehaviour
         miniBubble.SetActive(false);
         dots.SetActive(false);
 
+        typingSpeed = typingSpeedNormal; //set default typing speed
+
         colorArr[0] = new Color(0,0,0);
-        colorArr[1] = new Color(0.8f,0.3f,0.086f); //Hard Coded Angus Color
+        colorArr[1] = new Color(0.8f,0.3f,0.086f); //Hard Coded colors of text for different charas
     }
 
     // Update is called once per frame
@@ -59,7 +55,7 @@ public class speechBubbleManager : MonoBehaviour
             if(touched && !speechVisible)
             {
                 reader = new StreamReader(dialogPath); //Reader read dialog txt
-                lineText = reader.ReadLine();
+                //lineText = reader.ReadLine();
 
                 Debug.Log("show player bubble");
 
@@ -67,9 +63,8 @@ public class speechBubbleManager : MonoBehaviour
                 bigBubble.SetActive(true);
                 sentence.SetActive(true);
 
-                //show big player bubble
-                //playerBubble.SetActive(true);
-                //playerSpeech.SetActive(true);
+                //DialogBox Position
+                //dialogBox.transform.position = talkingObj.transform.position + dialogBoxOffSet;
 
                 //hide the small bubble
                 miniBubble.SetActive(false);
@@ -77,38 +72,54 @@ public class speechBubbleManager : MonoBehaviour
                 speechVisible = true;
             }
             if(speechVisible && canContinue){
-                Debug.Log("speaking");
+                //DialogBox Position
                 NextSentence();
+                dialogBox.transform.position = talkingObj.transform.position + dialogBoxOffSet;
+                Debug.Log("speaking");
+                
             }
         }
+        if(Input.GetKey(KeyCode.X)) //Lazy method for speeding up text
+            typingSpeed = typingSpeedFast;
+        else
+            typingSpeed = typingSpeedNormal;
 
         if(textDisplay.text == lineText){ //once text has finished completely
             canContinue = true;
         }
-        Debug.Log("canContinue is: " + canContinue);
+        
     }
 
     void OnTriggerEnter2D(Collider2D other){ 
-        if(other.gameObject.name == "showBubbleCollider"){ //if player touches npc collider
+        if(other.gameObject.tag == "TalkTrigger"){ //if player touches npc collider
             
             Debug.Log("touched NPC");
 
             //show the mini bubble
             miniBubble.SetActive(true);
             dots.SetActive(true);
+            
+            //Prepare to talk
             touched = true;
+            touchingObj = other.gameObject;
+            dialogPath = touchingObj.GetComponent<NPCTalktive>().GetDialogPath();
         }
     }
 
     void OnTriggerExit2D(Collider2D other){ 
-        if(other.gameObject.name == "showBubbleCollider"){ //if player is no longer touching the npc collider
+        if(other.gameObject.tag == "TalkTrigger"){ //if player is no longer touching the npc collider
             
             Debug.Log("not touching NPC anymore");
 
             //hide the mini bubble
             miniBubble.SetActive(false);
             dots.SetActive(false);
+            
+            //Reset talk and change plotprog value
             touched = false;
+            dialogPath = "None";
+            touchingObj.GetComponent<NPCTalktive>().ProgressPlot();
+            touchingObj = GameObject.Find("objDummy");
 
             //hide the big bubble too
             bigBubble.SetActive(false);
@@ -133,10 +144,12 @@ public class speechBubbleManager : MonoBehaviour
         if(lineText != "<END>"){ 
             if(lineText.Substring(0,2) == "M:") //Mae's line
             {
+                talkingObj = gameObject;
                 textDisplay.color = colorArr[0];
             }
             else if(lineText.Substring(0,2) == "A:") //Angus's line
             {
+                talkingObj = touchingObj; //ANGUS
                 textDisplay.color = colorArr[1];
             }
             lineText = lineText.Substring(2);

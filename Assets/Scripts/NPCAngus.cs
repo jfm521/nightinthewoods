@@ -9,7 +9,7 @@ namespace NPCCharacters
         // Start is called before the first frame update
         public float plotProg = 0; //Plot Progression value determines which dialog to send
         public string[] dialogArr = new string[5];
-        string NPCName = "Angus";
+        //string NPCName = "Angus";
         void Awake()
         {
             dialogArr[0] = "Assets/Dialogs/Angus/AngusDialogGetInCar.txt";

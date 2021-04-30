@@ -4,6 +4,7 @@ using UnityEngine;
 using NPCCharacters;
 public class NPCTalktive : MonoBehaviour
 {
+
     // Start is called before the first frame update
     private string NPCName;
     public enum characters
@@ -41,6 +42,8 @@ public class NPCTalktive : MonoBehaviour
         {
             Debug.Log("Plot+1");
             GameObject.Find("GameManager").GetComponent<NPCAngus>().plotProg += 1;
+
+
         }
     }
 }

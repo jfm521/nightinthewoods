@@ -30,10 +30,14 @@ public class speechBubbleManager : MonoBehaviour
     string lineText = "-";
     public Color[] colorArr = new Color[4];//Colors of text for characters
 
+    //sounds
+    AudioSource talking;
+    public AudioClip clip;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        talking = GetComponent<AudioSource>();
         //makes all the speech bubbles + text invisible
         //playerBubble.SetActive(false);
         //playerSpeech.SetActive(false);
@@ -70,13 +74,23 @@ public class speechBubbleManager : MonoBehaviour
                 miniBubble.SetActive(false);
                 dots.SetActive(false);
                 speechVisible = true;
+
+                //sound stuff
+                talking.clip = clip;
+                talking.Play();
             }
             if(speechVisible && canContinue){
                 //DialogBox Position
                 NextSentence();
                 dialogBox.transform.position = talkingObj.transform.position + dialogBoxOffSet;
                 Debug.Log("speaking");
-                
+
+                //sound stuff
+                if (!talking.isPlaying)
+                {
+                    talking.clip = clip;
+                    talking.Play();
+                }
             }
         }
         if(Input.GetKey(KeyCode.X)) //Lazy method for speeding up text

@@ -51,7 +51,9 @@ public class PlayerMove : MonoBehaviour
     Rigidbody2D myBody;
     BoxCollider2D myCollider;
 
-
+    //Sound stuff
+    AudioSource audio;
+    public AudioClip[] clips;
 
 
     // Called before the first frame update
@@ -59,6 +61,8 @@ public class PlayerMove : MonoBehaviour
     {
         myBody = gameObject.GetComponent<Rigidbody2D>();
         myCollider = gameObject.GetComponent<BoxCollider2D>();
+
+        audio = GetComponent<AudioSource>();
     }
 
 
@@ -154,6 +158,21 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
+        //play sound if player is moving AND on ground
+        if ((moveDir == 1 || moveDir == -1) && onFloor)
+        {
+            if (!audio.isPlaying)
+            {
+                audio.clip = clips[0];
+                audio.Play();
+            }
+        }
+
+        if(moveDir == 0 && audio.clip.name == "walking through leaves")
+        {
+            audio.Stop();
+        }
+
         // Changes the player's vertical velocity when they jump
 
         jumpVel = myBody.velocity.y;
@@ -174,6 +193,10 @@ public class PlayerMove : MonoBehaviour
                 }
                 onFloor = false;
                 tripleJumpTimer = 0;
+
+                //sounds
+                audio.clip = clips[1];
+                audio.Play();
             }
             jump = false;
         }

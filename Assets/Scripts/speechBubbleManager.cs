@@ -4,12 +4,13 @@ using UnityEngine;
 using TMPro;
 using System.IO;
 
-public class speechBubbleManager : MonoBehaviour
+public class SpeechBubbleManager : MonoBehaviour
 {
 
     //gameobject stuff to turn bubble + text sprites on and off
     public GameObject miniBubble, bigBubble, sentence, dots, NPCtriangle, playerTriangle, dialogBox;
 
+    private DialogDirector dialogDirector;
     public Vector3 dialogBoxOffSet = new Vector3(0,1,0);
     public GameObject talkingObj;
     //dialogBox has to be set in inspector
@@ -25,7 +26,7 @@ public class speechBubbleManager : MonoBehaviour
     private float typingSpeedNormal = 0.04f;
     private float typingSpeedFast = 0.008f; 
     private float typingSpeed; //typing speed set in start, spaghetti typing speed solution
-    private string dialogPath = "Assets/Dialogs/TestDialog.txt";
+    private string dialogPath = "None";
     private StreamReader reader;
     string lineText = "-";
     public Color[] colorArr = new Color[4];//Colors of text for characters
@@ -33,7 +34,7 @@ public class speechBubbleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        dialogDirector = GameObject.Find("DialogDirector").GetComponent<DialogDirector>();
         //makes all the speech bubbles + text invisible
         //playerBubble.SetActive(false);
         //playerSpeech.SetActive(false);
@@ -94,15 +95,7 @@ public class speechBubbleManager : MonoBehaviour
         if(other.gameObject.tag == "TalkTrigger"){ //if player touches npc collider
             
             Debug.Log("touched NPC");
-
-            //show the mini bubble
-            miniBubble.SetActive(true);
-            dots.SetActive(true);
-            
-            //Prepare to talk
-            touched = true;
-            touchingObj = other.gameObject;
-            dialogPath = touchingObj.GetComponent<NPCTalktive>().GetDialogPath();
+            StartTalking(other.gameObject);
         }
     }
 
@@ -110,20 +103,7 @@ public class speechBubbleManager : MonoBehaviour
         if(other.gameObject.tag == "TalkTrigger"){ //if player is no longer touching the npc collider
             
             Debug.Log("not touching NPC anymore");
-
-            //hide the mini bubble
-            miniBubble.SetActive(false);
-            dots.SetActive(false);
-            
-            //Reset talk and change plotprog value
-            touched = false;
-            dialogPath = "None";
-            touchingObj.GetComponent<NPCTalktive>().ProgressPlot();
-            touchingObj = GameObject.Find("objDummy");
-
-            //hide the big bubble too
-            bigBubble.SetActive(false);
-            sentence.SetActive(false);
+            EndTalking();
         }
     }
 
@@ -166,6 +146,34 @@ public class speechBubbleManager : MonoBehaviour
             canContinue = true;
             speechVisible = false;
         }
+    }
+    public void StartTalking(GameObject obj)
+    {
+            //show the mini bubble
+            miniBubble.SetActive(true);
+            dots.SetActive(true);
+            
+            //Prepare to talk
+            touched = true;
+            touchingObj = obj;
+            dialogPath = touchingObj.GetComponent<NPCTalktive>().GetDialogPath();
+    }
+
+    public void EndTalking()
+    {
+            //hide the mini bubble
+            miniBubble.SetActive(false);
+            dots.SetActive(false);
+            
+            //Reset talk and change plotprog value
+            touched = false;
+            dialogPath = "None";
+            dialogDirector.ProgressPlot();
+            touchingObj = GameObject.Find("objDummy");
+
+            //hide the big bubble too
+            bigBubble.SetActive(false);
+            sentence.SetActive(false);
     }
 }
 

@@ -51,6 +51,9 @@ public class PlayerMove : MonoBehaviour
     Rigidbody2D myBody;
     BoxCollider2D myCollider;
 
+    //Player sprite renderer
+    SpriteRenderer myRenderer;
+
 
 
 
@@ -59,6 +62,7 @@ public class PlayerMove : MonoBehaviour
     {
         myBody = gameObject.GetComponent<Rigidbody2D>();
         myCollider = gameObject.GetComponent<BoxCollider2D>();
+        myRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
 
@@ -97,7 +101,7 @@ public class PlayerMove : MonoBehaviour
         else if (Input.GetKey(KeyCode.A))
         {
             moveDir = -1;
-            SpriteRenderer.flipX = true;
+            myRenderer.flipX = true;
         }
         else
         {

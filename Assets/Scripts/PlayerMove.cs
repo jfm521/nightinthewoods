@@ -52,8 +52,12 @@ public class PlayerMove : MonoBehaviour
     BoxCollider2D myCollider;
 
     //Player sprite renderer
-    SpriteRenderer myRenderer;
+    SpriteRenderer maeHead;
+    SpriteRenderer maeBody;
 
+    //Parts of the player
+    public GameObject Head;
+    public GameObject Body;
 
 
 
@@ -62,7 +66,8 @@ public class PlayerMove : MonoBehaviour
     {
         myBody = gameObject.GetComponent<Rigidbody2D>();
         myCollider = gameObject.GetComponent<BoxCollider2D>();
-        myRenderer = gameObject.GetComponent<SpriteRenderer>();
+        maeHead = Head.GetComponent<SpriteRenderer>();
+        maeBody = Body.GetComponent<SpriteRenderer>();
     }
 
 
@@ -97,11 +102,14 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             moveDir = 1;
+            maeHead.flipX = false;
+            maeBody.flipX = false;
         }
         else if (Input.GetKey(KeyCode.A))
         {
             moveDir = -1;
-            myRenderer.flipX = true;
+            maeHead.flipX = true;
+            maeBody.flipX = true;
         }
         else
         {

@@ -89,7 +89,7 @@ public class PlayerMove : MonoBehaviour
 
         HandleMovement();
         TimeTripleJump();
-        DetectCollisions();
+        //DetectCollisions();
     }
 
 
@@ -228,10 +228,10 @@ public class PlayerMove : MonoBehaviour
 
 
     // Detects for collision with the floor
-    void DetectCollisions()
+    /*void DetectCollisions()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(transform.position.x + myBody.velocity.x, transform.position.y + myBody.velocity.y), 1);
         Debug.DrawRay(transform.position, new Vector3(transform.position.x + myBody.velocity.x, transform.position.y + myBody.velocity.y), Color.black);
-    }
+    }*/
 
 }

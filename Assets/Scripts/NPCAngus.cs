@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace NPCCharacters
+namespace NPCCharacters // not useful for now
 {   public class NPCAngus : MonoBehaviour
     {
         // Start is called before the first frame update

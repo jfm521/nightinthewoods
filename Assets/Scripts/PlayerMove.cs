@@ -97,6 +97,7 @@ public class PlayerMove : MonoBehaviour
         else if (Input.GetKey(KeyCode.A))
         {
             moveDir = -1;
+            SpriteRenderer.flipX = true;
         }
         else
         {

@@ -30,17 +30,8 @@ public class NPCTalktive : MonoBehaviour
         if(characterSelect == characters.Angus)
         {
             Debug.Log("Get Angus");
-            return GameObject.Find("GameManager").GetComponent<NPCAngus>().CheckPlotProg();
+            return GameObject.Find("DialogDirector").GetComponent<NPCAngus>().CheckPlotProg();
         }
         return "Error in GetDialogPath";
-    }
-    public void ProgressPlot()
-    {
-        Debug.Log("PP");
-        if(GameObject.Find("GameManager").GetComponent<NPCAngus>().plotProg == 0)
-        {
-            Debug.Log("Plot+1");
-            GameObject.Find("GameManager").GetComponent<NPCAngus>().plotProg += 1;
-        }
     }
 }

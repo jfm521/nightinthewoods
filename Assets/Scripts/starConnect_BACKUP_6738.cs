@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +18,7 @@ public class starConnect : MonoBehaviour
     // Stores the pointer
     public GameObject pointer;
 
+<<<<<<< HEAD
     // Line renderer
     public LineRenderer myLine;
     public LineRenderer connectedLine;
@@ -27,6 +28,11 @@ public class starConnect : MonoBehaviour
 
     // Debug
     public bool debugOn;
+=======
+    // Stores the start and end points of the line
+    Vector3 startPt;
+    Vector3 endPt;
+>>>>>>> b5d3a358bb4d7c1a399287c179ad90cf1881520d
 
     // Start is called before the first frame update
     void Start()
@@ -35,11 +41,18 @@ public class starConnect : MonoBehaviour
 
         starFriend1Connected = false;
         starFriend2Connected = false;
+<<<<<<< HEAD
+=======
+
+        startPt = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y);
+        endPt = startPt;
+>>>>>>> b5d3a358bb4d7c1a399287c179ad90cf1881520d
     }
 
     // Update is called once per frame
     void Update()
     {
+<<<<<<< HEAD
         //Debug
         if (debugOn)
         {
@@ -96,6 +109,16 @@ public class starConnect : MonoBehaviour
     }
 
     // When mouse is clicked while touching star, connect or cancel
+=======
+        //Draws the line (HAVE GIZMOS ON)
+        if (pointer.GetComponent<pointerMove>().isConnecting && pointer.GetComponent<pointerMove>().starInHand == gameObject)
+        {
+
+        }
+        Debug.DrawLine(startPt, endPt);
+    }
+
+>>>>>>> b5d3a358bb4d7c1a399287c179ad90cf1881520d
     void OnTriggerStay2D(Collider2D collision)
     {
         if (Input.GetMouseButtonDown(0))
@@ -108,7 +131,10 @@ public class starConnect : MonoBehaviour
                     {
                         isConnected += 1;
                         starFriend1Connected = true;
+<<<<<<< HEAD
 
+=======
+>>>>>>> b5d3a358bb4d7c1a399287c179ad90cf1881520d
                     }
                     else if (collision.GetComponent<pointerMove>().starInHand == starFriend2 && !starFriend2Connected)
                     {

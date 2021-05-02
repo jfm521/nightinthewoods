@@ -9,10 +9,18 @@ public class DialogDirector : MonoBehaviour
     public DialogManager dialogManager;
     public GameObject angusObj;
     public NPCAngus angusDialog;
+
+    public NPCMove angusMove;
+    public GameObject angusObject;
+
     public bool isTalking = false; // Is talking is set in Dialog Manager.StartTalking() and EndTalking()
     void Start()
     {
         angusDialog = GetComponent<NPCAngus>();
+
+        angusMove = angusObject.GetComponent<NPCMove>();
+
+        angusMove.WalkTowards(-20);
     }
 
     // Update is called once per frame

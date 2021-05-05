@@ -1757,9 +1757,43 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1564250716}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1564250718 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2812898429951649014, guid: 8358e0affc0544feba1932ce6e7f58ee,
+--- !u!1001 &1628704698
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1391339691}
+    m_Modifications:
+    - target: {fileID: 2812898429951649014, guid: 482df1edeb1b44e93adfb529ed959f82,
+        type: 3}
+      propertyPath: m_Name
+      value: Star (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2812898429951649016, guid: 482df1edeb1b44e93adfb529ed959f82,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1630894145}
+    - target: {fileID: 2812898429951649016, guid: 482df1edeb1b44e93adfb529ed959f82,
+        type: 3}
+      propertyPath: isConnected
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2812898429951649017, guid: 482df1edeb1b44e93adfb529ed959f82,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2812898429951649017, guid: 482df1edeb1b44e93adfb529ed959f82,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 482df1edeb1b44e93adfb529ed959f82, type: 3}
+--- !u!4 &1628704699 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2812898429951649017, guid: 482df1edeb1b44e93adfb529ed959f82,
     type: 3}
   m_PrefabInstance: {fileID: 1564250716}
   m_PrefabAsset: {fileID: 0}
@@ -1994,7 +2028,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Star (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 2812898429951649016, guid: 8358e0affc0544feba1932ce6e7f58ee,
+    - target: {fileID: 2812898429951649016, guid: 482df1edeb1b44e93adfb529ed959f82,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1630894145}
+    - target: {fileID: 2812898429951649016, guid: 482df1edeb1b44e93adfb529ed959f82,
+        type: 3}
+      propertyPath: isConnected
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496964216227162285, guid: 482df1edeb1b44e93adfb529ed959f82,
         type: 3}
       propertyPath: starFriend1
       value: 
@@ -2556,7 +2600,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Star (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 2812898429951649016, guid: 8358e0affc0544feba1932ce6e7f58ee,
+    - target: {fileID: 2812898429951649016, guid: 482df1edeb1b44e93adfb529ed959f82,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1630894145}
+    - target: {fileID: 2812898429951649016, guid: 482df1edeb1b44e93adfb529ed959f82,
+        type: 3}
+      propertyPath: isConnected
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496964216227162285, guid: 482df1edeb1b44e93adfb529ed959f82,
         type: 3}
       propertyPath: starFriend1
       value: 

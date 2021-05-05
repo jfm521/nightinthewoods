@@ -485,11 +485,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4496964216227162285, guid: 482df1edeb1b44e93adfb529ed959f82,
         type: 3}
-      propertyPath: pointer
-      value: 
-      objectReference: {fileID: 869168124}
-    - target: {fileID: 4496964216227162285, guid: 482df1edeb1b44e93adfb529ed959f82,
-        type: 3}
       propertyPath: isConnected
       value: 2
       objectReference: {fileID: 0}
@@ -724,11 +719,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4496964216227162285, guid: 482df1edeb1b44e93adfb529ed959f82,
         type: 3}
-      propertyPath: pointer
-      value: 
-      objectReference: {fileID: 869168124}
-    - target: {fileID: 4496964216227162285, guid: 482df1edeb1b44e93adfb529ed959f82,
-        type: 3}
       propertyPath: isConnected
       value: 2
       objectReference: {fileID: 0}
@@ -811,11 +801,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Star
       objectReference: {fileID: 0}
-    - target: {fileID: 4496964216227162285, guid: 482df1edeb1b44e93adfb529ed959f82,
-        type: 3}
-      propertyPath: pointer
-      value: 
-      objectReference: {fileID: 869168124}
     - target: {fileID: 4496964216227162285, guid: 482df1edeb1b44e93adfb529ed959f82,
         type: 3}
       propertyPath: isConnected

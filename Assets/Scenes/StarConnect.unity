@@ -2056,68 +2056,8 @@ PrefabInstance:
       objectReference: {fileID: 1630894145}
     - target: {fileID: 2812898429951649016, guid: 482df1edeb1b44e93adfb529ed959f82,
         type: 3}
-<<<<<<< HEAD
-      propertyPath: pointer
-      value: 
-      objectReference: {fileID: 869168124}
-    - target: {fileID: 2812898429951649016, guid: 482df1edeb1b44e93adfb529ed959f82,
-        type: 3}
-      propertyPath: starFriend1
-      value: 
-      objectReference: {fileID: 2029449483}
-    - target: {fileID: 2812898429951649016, guid: 482df1edeb1b44e93adfb529ed959f82,
-        type: 3}
-      propertyPath: starFriend2
-      value: 
-      objectReference: {fileID: 499730071}
-    - target: {fileID: 2812898429951649017, guid: 482df1edeb1b44e93adfb529ed959f82,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2812898429951649017, guid: 482df1edeb1b44e93adfb529ed959f82,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 2812898429951649017, guid: 482df1edeb1b44e93adfb529ed959f82,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2812898429951649017, guid: 482df1edeb1b44e93adfb529ed959f82,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2812898429951649017, guid: 482df1edeb1b44e93adfb529ed959f82,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2812898429951649017, guid: 482df1edeb1b44e93adfb529ed959f82,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2812898429951649017, guid: 482df1edeb1b44e93adfb529ed959f82,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2812898429951649017, guid: 482df1edeb1b44e93adfb529ed959f82,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2812898429951649017, guid: 482df1edeb1b44e93adfb529ed959f82,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-=======
       propertyPath: isConnected
       value: 2
->>>>>>> 06f06e1c28a0b2005767694af1f6076adbe23d33
       objectReference: {fileID: 0}
     - target: {fileID: 2812898429951649017, guid: 482df1edeb1b44e93adfb529ed959f82,
         type: 3}
@@ -2381,17 +2321,10 @@ PrefabInstance:
       objectReference: {fileID: 1630894145}
     - target: {fileID: 2812898429951649016, guid: 482df1edeb1b44e93adfb529ed959f82,
         type: 3}
-<<<<<<< HEAD
-      propertyPath: pointer
-      value: 
-      objectReference: {fileID: 869168124}
-    - target: {fileID: 2812898429951649016, guid: 482df1edeb1b44e93adfb529ed959f82,
-=======
       propertyPath: isConnected
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4496964216227162285, guid: 482df1edeb1b44e93adfb529ed959f82,
->>>>>>> 06f06e1c28a0b2005767694af1f6076adbe23d33
         type: 3}
       propertyPath: starFriend1
       value: 
@@ -2657,17 +2590,10 @@ PrefabInstance:
       objectReference: {fileID: 1630894145}
     - target: {fileID: 2812898429951649016, guid: 482df1edeb1b44e93adfb529ed959f82,
         type: 3}
-<<<<<<< HEAD
-      propertyPath: pointer
-      value: 
-      objectReference: {fileID: 869168124}
-    - target: {fileID: 2812898429951649016, guid: 482df1edeb1b44e93adfb529ed959f82,
-=======
       propertyPath: isConnected
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4496964216227162285, guid: 482df1edeb1b44e93adfb529ed959f82,
->>>>>>> 06f06e1c28a0b2005767694af1f6076adbe23d33
         type: 3}
       propertyPath: starFriend1
       value: 

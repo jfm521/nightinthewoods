@@ -1,10 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace NPCCharacters
-{
-    public class NPCAngus : MonoBehaviour
+namespace NPCCharacters // not useful for now
+{   public class NPCAngus : MonoBehaviour
     {
         // Start is called before the first frame update
         public float plotProg = 0; //Plot Progression value determines which dialog to send
@@ -25,6 +24,14 @@ namespace NPCCharacters
             else if(plotProg == 1)
                 return dialogArr[1];
             else return "Error in CheckPlotProg";
+        }
+    }
+    public class NPCAngusStars : NPCAngus //Seperate Class for Ease of Testing
+    {
+        // Start is called before the first frame update
+        void Awake()
+        {
+            dialogArr[0] = "Assets/Dialogs/Angus/Stars/AngusStarsDialog1.txt";
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,9 +18,15 @@ public class starConnect : MonoBehaviour
     // Stores the pointer
     public GameObject pointer;
 
-    // Stores the start and end points of the line
-    Vector3 startPt;
-    Vector3 endPt;
+    // Line renderer
+    public LineRenderer myLine;
+    public LineRenderer connectedLine;
+
+    // Camera (for mouse pos)
+    public Camera cam;
+
+    // Debug
+    public bool debugOn;
 
     // Start is called before the first frame update
     void Start()
@@ -29,22 +35,67 @@ public class starConnect : MonoBehaviour
 
         starFriend1Connected = false;
         starFriend2Connected = false;
-
-        startPt = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y);
-        endPt = startPt;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Draws the line (HAVE GIZMOS ON)
-        if (pointer.GetComponent<pointerMove>().isConnecting && pointer.GetComponent<pointerMove>().starInHand == gameObject)
+        //Debug
+        if (debugOn)
         {
-
+            Debug.Log(starFriend1Connected);
+            Debug.Log(starFriend2Connected);
         }
-        Debug.DrawLine(startPt, endPt);
+
+        //Detects if star friends are connected from a different star
+        if (starFriend1Connected == false && starFriend1.GetComponent<starConnect>().starFriend1Connected && starFriend1.GetComponent<starConnect>().starFriend1 == gameObject)
+        {
+            starFriend1Connected = true;
+        }
+        else if (starFriend1Connected == false && starFriend1.GetComponent<starConnect>().starFriend2Connected && starFriend1.GetComponent<starConnect>().starFriend2 == gameObject)
+        {
+            starFriend1Connected = true;
+        }
+        if (starFriend2Connected == false && starFriend2.GetComponent<starConnect>().starFriend1Connected && starFriend2.GetComponent<starConnect>().starFriend1 == gameObject)
+        {
+            starFriend2Connected = true;
+        }
+        else if (starFriend2Connected == false && starFriend2.GetComponent<starConnect>().starFriend2Connected && starFriend2.GetComponent<starConnect>().starFriend2 == gameObject)
+        {
+            starFriend2Connected = true;
+        }
+
+        //Draws the line if not yet connected
+        if (!starFriend1Connected || !starFriend2Connected)
+        {
+            if (pointer.GetComponent<pointerMove>().isConnecting && pointer.GetComponent<pointerMove>().starInHand == gameObject)
+            {
+                float mousex = cam.ScreenToWorldPoint(Input.mousePosition).x;
+                float mousey = cam.ScreenToWorldPoint(Input.mousePosition).y;
+                myLine.SetPosition(1, new Vector3(mousex - gameObject.transform.position.x, mousey - gameObject.transform.position.y));
+                if (debugOn)
+                {
+                    Debug.Log("Drawing line");
+                }
+            }
+            else
+            {
+                myLine.SetPosition(1, new Vector3(0, 0));
+            }
+        }
+        else
+        {
+            myLine.SetPosition(1, new Vector3(0, 0));
+        }
+
+        // Draws the line if connected
+        if (starFriend1Connected)
+        {
+            connectedLine.SetPosition(1, new Vector3(starFriend1.gameObject.transform.position.x - gameObject.transform.position.x, starFriend1.gameObject.transform.position.y - gameObject.transform.position.y));
+        }
     }
 
+    // When mouse is clicked while touching star, connect or cancel
     void OnTriggerStay2D(Collider2D collision)
     {
         if (Input.GetMouseButtonDown(0))
@@ -57,6 +108,7 @@ public class starConnect : MonoBehaviour
                     {
                         isConnected += 1;
                         starFriend1Connected = true;
+
                     }
                     else if (collision.GetComponent<pointerMove>().starInHand == starFriend2 && !starFriend2Connected)
                     {

@@ -51,6 +51,13 @@ public class PlayerMove : MonoBehaviour
     Rigidbody2D myBody;
     BoxCollider2D myCollider;
 
+    //Player sprite renderer
+    SpriteRenderer maeHead;
+    SpriteRenderer maeBody;
+
+    //Parts of the player
+    public GameObject Head;
+    public GameObject Body;
 
 
 
@@ -59,6 +66,8 @@ public class PlayerMove : MonoBehaviour
     {
         myBody = gameObject.GetComponent<Rigidbody2D>();
         myCollider = gameObject.GetComponent<BoxCollider2D>();
+        maeHead = Head.GetComponent<SpriteRenderer>();
+        maeBody = Body.GetComponent<SpriteRenderer>();
     }
 
 
@@ -80,7 +89,7 @@ public class PlayerMove : MonoBehaviour
 
         HandleMovement();
         TimeTripleJump();
-        DetectCollisions();
+        //DetectCollisions();
     }
 
 
@@ -93,10 +102,14 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             moveDir = 1;
+            maeHead.flipX = false;
+            maeBody.flipX = false;
         }
         else if (Input.GetKey(KeyCode.A))
         {
             moveDir = -1;
+            maeHead.flipX = true;
+            maeBody.flipX = true;
         }
         else
         {
@@ -215,10 +228,10 @@ public class PlayerMove : MonoBehaviour
 
 
     // Detects for collision with the floor
-    void DetectCollisions()
+    /*void DetectCollisions()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(transform.position.x + myBody.velocity.x, transform.position.y + myBody.velocity.y), 1);
         Debug.DrawRay(transform.position, new Vector3(transform.position.x + myBody.velocity.x, transform.position.y + myBody.velocity.y), Color.black);
-    }
+    }*/
 
 }

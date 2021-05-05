@@ -453,6 +453,7 @@ GameObject:
   - component: {fileID: 541668061}
   - component: {fileID: 541668064}
   - component: {fileID: 541668065}
+  - component: {fileID: 541668062}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -507,6 +508,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8463805, y: 0.30548877}
   m_EdgeRadius: 0
+--- !u!95 &541668062
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541668059}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0965415d8da6dec41868a64060032297, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &541668063
 Transform:
   m_ObjectHideFlags: 0
@@ -555,17 +575,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff10eb0354ba4098944deb2377a2c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  miniBubble: {fileID: 1272834773}
-  bigBubble: {fileID: 1316361848}
-  sentence: {fileID: 1142751972}
-  dots: {fileID: 1923530679}
-  NPCtriangle: {fileID: 0}
-  playerTriangle: {fileID: 0}
+  dialogPrompt: {fileID: 0}
   dialogBox: {fileID: 1316361848}
   dialogBoxOffSet: {x: 0, y: 1, z: 0}
   talkingObj: {fileID: 0}
   textDisplay: {fileID: 1142751973}
-  playerTextDisplay: {fileID: 1041903319}
   colorArr:
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}

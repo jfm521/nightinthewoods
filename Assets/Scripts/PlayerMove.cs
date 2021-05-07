@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -51,6 +51,10 @@ public class PlayerMove : MonoBehaviour
     Rigidbody2D myBody;
     BoxCollider2D myCollider;
 
+    //Sound stuff
+    AudioSource audio;
+    public AudioClip[] clips;
+    
     //Player sprite renderer
     SpriteRenderer maeHead;
     SpriteRenderer maeBody;
@@ -66,6 +70,9 @@ public class PlayerMove : MonoBehaviour
     {
         myBody = gameObject.GetComponent<Rigidbody2D>();
         myCollider = gameObject.GetComponent<BoxCollider2D>();
+
+        audio = GetComponent<AudioSource>();
+        
         maeHead = Head.GetComponent<SpriteRenderer>();
         maeBody = Body.GetComponent<SpriteRenderer>();
     }
@@ -167,6 +174,21 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
+        //play sound if player is moving AND on ground
+        if ((moveDir == 1 || moveDir == -1) && onFloor)
+        {
+            if (!audio.isPlaying)
+            {
+                audio.clip = clips[0];
+                audio.Play();
+            }
+        }
+
+        if(moveDir == 0 && audio.clip.name == "walking through leaves")
+        {
+            audio.Stop();
+        }
+
         // Changes the player's vertical velocity when they jump
 
         jumpVel = myBody.velocity.y;
@@ -187,6 +209,10 @@ public class PlayerMove : MonoBehaviour
                 }
                 onFloor = false;
                 tripleJumpTimer = 0;
+
+                //sounds
+                audio.clip = clips[1];
+                audio.Play();
             }
             jump = false;
         }

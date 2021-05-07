@@ -184,7 +184,7 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
-        if(moveDir == 0 && audio.clip.name == "walking through leaves")
+        if(moveDir == 0 /* && audio.clip.name == "walking through leaves" */)
         {
             audio.Stop();
         }

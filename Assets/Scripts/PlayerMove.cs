@@ -184,13 +184,12 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
-        if(moveDir == 0 && audio.clip.name == "walking through leaves")
+        if (moveDir == 0 && audio.clip.name == "walking through leaves")
         {
             audio.Stop();
         }
 
         // Changes the player's vertical velocity when they jump
-
         jumpVel = myBody.velocity.y;
 
         if (jump == true)
@@ -219,6 +218,7 @@ public class PlayerMove : MonoBehaviour
 
         // Updates the player's actual velocity
         myBody.velocity = new Vector3(hVel * speed, jumpVel, 0);
+
     }
 
 

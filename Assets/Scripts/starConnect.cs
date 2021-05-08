@@ -40,12 +40,6 @@ public class starConnect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug
-        if (debugOn)
-        {
-            Debug.Log(starFriend1Connected);
-            Debug.Log(starFriend2Connected);
-        }
 
         //Detects if star friends are connected from a different star
         if (starFriend1Connected == false && starFriend1.GetComponent<starConnect>().starFriend1Connected && starFriend1.GetComponent<starConnect>().starFriend1 == gameObject)

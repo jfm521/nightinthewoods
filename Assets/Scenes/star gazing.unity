@@ -1248,6 +1248,7 @@ MonoBehaviour:
   jumpHeight: 9
   tripleJumpHeight: 12
   maxTripleJumpTimer: 6
+  angus: {fileID: 1223902957}
 --- !u!1 &1185404337
 GameObject:
   m_ObjectHideFlags: 0

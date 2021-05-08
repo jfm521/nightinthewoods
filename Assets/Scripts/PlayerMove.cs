@@ -51,17 +51,21 @@ public class PlayerMove : MonoBehaviour
     Rigidbody2D myBody;
     BoxCollider2D myCollider;
 
+    // Angus (for collision ignore)
+    public GameObject angus;
+
+    /*
     //Sound stuff
     AudioSource audio;
     public AudioClip[] clips;
-    
+    */
     //Player sprite renderer
-    SpriteRenderer maeHead;
-    SpriteRenderer maeBody;
+    //SpriteRenderer maeHead;
+    //SpriteRenderer maeBody;
 
     //Parts of the player
-    public GameObject Head;
-    public GameObject Body;
+    //public GameObject Head;
+    //public GameObject Body;
 
 
 
@@ -71,10 +75,12 @@ public class PlayerMove : MonoBehaviour
         myBody = gameObject.GetComponent<Rigidbody2D>();
         myCollider = gameObject.GetComponent<BoxCollider2D>();
 
-        audio = GetComponent<AudioSource>();
+        Physics2D.IgnoreCollision(angus.GetComponent<Collider2D>(), myCollider);
+
+        //audio = GetComponent<AudioSource>();
         
-        maeHead = Head.GetComponent<SpriteRenderer>();
-        maeBody = Body.GetComponent<SpriteRenderer>();
+        //maeHead = Head.GetComponent<SpriteRenderer>();
+        //maeBody = Body.GetComponent<SpriteRenderer>();
     }
 
 
@@ -109,14 +115,14 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             moveDir = 1;
-            maeHead.flipX = false;
-            maeBody.flipX = false;
+            //maeHead.flipX = false;
+            //maeBody.flipX = false;
         }
         else if (Input.GetKey(KeyCode.A))
         {
             moveDir = -1;
-            maeHead.flipX = true;
-            maeBody.flipX = true;
+            //maeHead.flipX = true;
+            //maeBody.flipX = true;
         }
         else
         {
@@ -173,7 +179,7 @@ public class PlayerMove : MonoBehaviour
                 hVel += hAcc;
             }
         }
-
+        /*
         //play sound if player is moving AND on ground
         if ((moveDir == 1 || moveDir == -1) && onFloor)
         {
@@ -188,7 +194,7 @@ public class PlayerMove : MonoBehaviour
         {
             audio.Stop();
         }
-
+        */
         // Changes the player's vertical velocity when they jump
         jumpVel = myBody.velocity.y;
 
@@ -208,16 +214,18 @@ public class PlayerMove : MonoBehaviour
                 }
                 onFloor = false;
                 tripleJumpTimer = 0;
-
+                /*
                 //sounds
                 audio.clip = clips[1];
                 audio.Play();
+                */
             }
             jump = false;
         }
 
         // Updates the player's actual velocity
         myBody.velocity = new Vector3(hVel * speed, jumpVel, 0);
+        Debug.Log(onFloor);
 
     }
 

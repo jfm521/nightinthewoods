@@ -60,12 +60,12 @@ public class PlayerMove : MonoBehaviour
     public AudioClip[] clips;
     
     //Player sprite renderer
-    //SpriteRenderer maeHead;
-    //SpriteRenderer maeBody;
+    SpriteRenderer maeHead;
+    SpriteRenderer maeBody;
 
     //Parts of the player
-    //public GameObject Head;
-    //public GameObject Body;
+    public GameObject Head;
+    public GameObject Body;
 
 
 
@@ -79,12 +79,12 @@ public class PlayerMove : MonoBehaviour
 
         audio = GetComponent<AudioSource>();
         
-        //maeHead = Head.GetComponent<SpriteRenderer>();
-        //maeBody = Body.GetComponent<SpriteRenderer>();
+        maeHead = Head.GetComponent<SpriteRenderer>();
+        maeBody = Body.GetComponent<SpriteRenderer>();
         audio = GetComponent<AudioSource>();
         
-        //maeHead = Head.GetComponent<SpriteRenderer>();
-        //maeBody = Body.GetComponent<SpriteRenderer>();
+        maeHead = Head.GetComponent<SpriteRenderer>();
+        maeBody = Body.GetComponent<SpriteRenderer>();
     }
 
 
@@ -119,14 +119,14 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             moveDir = 1;
-            //maeHead.flipX = false;
-            //maeBody.flipX = false;
+            maeHead.flipX = false;
+            maeBody.flipX = false;
         }
         else if (Input.GetKey(KeyCode.A))
         {
             moveDir = -1;
-            //maeHead.flipX = true;
-            //maeBody.flipX = true;
+            maeHead.flipX = true;
+            maeBody.flipX = true;
         }
         else
         {

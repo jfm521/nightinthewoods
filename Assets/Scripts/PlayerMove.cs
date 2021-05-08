@@ -54,11 +54,11 @@ public class PlayerMove : MonoBehaviour
     // Angus (for collision ignore)
     public GameObject angus;
 
-    /*
+
     //Sound stuff
     AudioSource audio;
     public AudioClip[] clips;
-    */
+    
     //Player sprite renderer
     //SpriteRenderer maeHead;
     //SpriteRenderer maeBody;
@@ -77,7 +77,11 @@ public class PlayerMove : MonoBehaviour
 
         Physics2D.IgnoreCollision(angus.GetComponent<Collider2D>(), myCollider);
 
-        //audio = GetComponent<AudioSource>();
+        audio = GetComponent<AudioSource>();
+        
+        //maeHead = Head.GetComponent<SpriteRenderer>();
+        //maeBody = Body.GetComponent<SpriteRenderer>();
+        audio = GetComponent<AudioSource>();
         
         //maeHead = Head.GetComponent<SpriteRenderer>();
         //maeBody = Body.GetComponent<SpriteRenderer>();
@@ -179,7 +183,7 @@ public class PlayerMove : MonoBehaviour
                 hVel += hAcc;
             }
         }
-        /*
+
         //play sound if player is moving AND on ground
         if ((moveDir == 1 || moveDir == -1) && onFloor)
         {
@@ -190,11 +194,11 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
-        if (moveDir == 0 && audio.clip.name == "walking through leaves")
+        if(moveDir == 0 /* && audio.clip.name == "walking through leaves" */)
         {
             audio.Stop();
         }
-        */
+
         // Changes the player's vertical velocity when they jump
         jumpVel = myBody.velocity.y;
 
@@ -214,19 +218,16 @@ public class PlayerMove : MonoBehaviour
                 }
                 onFloor = false;
                 tripleJumpTimer = 0;
-                /*
+
                 //sounds
                 audio.clip = clips[1];
                 audio.Play();
-                */
             }
             jump = false;
         }
 
         // Updates the player's actual velocity
         myBody.velocity = new Vector3(hVel * speed, jumpVel, 0);
-        Debug.Log(onFloor);
-
     }
 
 
@@ -257,15 +258,5 @@ public class PlayerMove : MonoBehaviour
             }
         }
     }
-
-
-
-
-    // Detects for collision with the floor
-    /*void DetectCollisions()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(transform.position.x + myBody.velocity.x, transform.position.y + myBody.velocity.y), 1);
-        Debug.DrawRay(transform.position, new Vector3(transform.position.x + myBody.velocity.x, transform.position.y + myBody.velocity.y), Color.black);
-    }*/
 
 }

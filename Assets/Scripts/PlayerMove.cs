@@ -51,6 +51,10 @@ public class PlayerMove : MonoBehaviour
     Rigidbody2D myBody;
     BoxCollider2D myCollider;
 
+    // Angus (for collision ignore)
+    public GameObject angus;
+
+
     //Sound stuff
     AudioSource audio;
     public AudioClip[] clips;
@@ -71,6 +75,12 @@ public class PlayerMove : MonoBehaviour
         myBody = gameObject.GetComponent<Rigidbody2D>();
         myCollider = gameObject.GetComponent<BoxCollider2D>();
 
+        Physics2D.IgnoreCollision(angus.GetComponent<Collider2D>(), myCollider);
+
+        audio = GetComponent<AudioSource>();
+        
+        maeHead = Head.GetComponent<SpriteRenderer>();
+        maeBody = Body.GetComponent<SpriteRenderer>();
         audio = GetComponent<AudioSource>();
         
         maeHead = Head.GetComponent<SpriteRenderer>();
@@ -190,7 +200,6 @@ public class PlayerMove : MonoBehaviour
         }
 
         // Changes the player's vertical velocity when they jump
-
         jumpVel = myBody.velocity.y;
 
         if (jump == true)
@@ -249,15 +258,5 @@ public class PlayerMove : MonoBehaviour
             }
         }
     }
-
-
-
-
-    // Detects for collision with the floor
-    /*void DetectCollisions()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(transform.position.x + myBody.velocity.x, transform.position.y + myBody.velocity.y), 1);
-        Debug.DrawRay(transform.position, new Vector3(transform.position.x + myBody.velocity.x, transform.position.y + myBody.velocity.y), Color.black);
-    }*/
 
 }

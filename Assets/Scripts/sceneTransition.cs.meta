@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/cameraStars.cs.meta
+guid: 632458905e7c94a65acf37c4ca707003
+=======
 guid: c189b3c76d44240b7932c3411859fec2
+>>>>>>> 68596ad10e996bc840654d4eca3ccae605f35288:Assets/Scripts/sceneTransition.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

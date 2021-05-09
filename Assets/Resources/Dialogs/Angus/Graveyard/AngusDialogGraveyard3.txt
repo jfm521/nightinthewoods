@@ -1,0 +1,4 @@
+A:Last Dialog before star
+A:Cool Night.
+M:Now Star scene.
+<END>

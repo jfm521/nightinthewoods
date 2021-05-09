@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using NPCCharacters;
+//using NPCCharacters;
 
 public class GameManager : MonoBehaviour
 {

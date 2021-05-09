@@ -54,10 +54,12 @@ public class PlayerMove : MonoBehaviour
     // Angus (for collision ignore)
     public GameObject angus;
 
-
     //Sound stuff
     AudioSource audio;
     public AudioClip[] clips;
+
+    //Animation Stuff
+    public Animator animator;
 
 
     // Called before the first frame update
@@ -103,22 +105,19 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             moveDir = 1;
-            SpriteRenderer[] bodyparts = GetComponentsInChildren<SpriteRenderer>();
-            for(int i = 0; i < bodyparts.Length; i++){
-            bodyparts[i].flipX = false;
-            }
+            animator.SetBool("IsRunning", true);
+            animator.SetBool("FacingLeft", false);
         }
         else if (Input.GetKey(KeyCode.A))
         {
             moveDir = -1;
-            SpriteRenderer[] bodyparts = GetComponentsInChildren<SpriteRenderer>();
-            for(int i = 0; i < bodyparts.Length; i++){
-            bodyparts[i].flipX = true;
-            }
+            animator.SetBool("IsRunning", true);
+            animator.SetBool("FacingLeft", true);
         }
         else
         {
             moveDir = 0;
+            animator.SetBool("IsRunning", false);
             if (tripleJump > 0)
             {
                 tripleJump = 0;

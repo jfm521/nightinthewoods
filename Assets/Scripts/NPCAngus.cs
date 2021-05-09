@@ -18,6 +18,7 @@ using UnityEngine.UI;
         public string[] dialogArrSectionName = new string[5];
 
         public Text debugText;
+        private string debugStr;
         public bool debugMode;
         private string sectionEnd = "ENDOFSECTION";
         private string cutsceneSpot = "CUTSCENESPOT";
@@ -30,9 +31,9 @@ using UnityEngine.UI;
             dialogArr[0,2] = "Assets/Resources/Dialogs/Angus/"+dialogArrSectionName[0]+"/AngusDialogGraveyard3.txt";
             dialogArr[0,3] = sectionEnd;
             //Don't need rest
-            dialogArrSectionName[1] = "<Loop>StarGazing";
-            dialogArr[1,0] = "Assets/Resources/Dialogs/Angus/"+dialogArrSectionName[0]+"/AngusDialogGraveyard3.txt";
-            dialogArr[0,3] = sectionEnd;
+            dialogArrSectionName[1] = "<Load>StarGazing";
+            dialogArr[1,0] = "StarConnect 1"; //Scene name
+            dialogArr[1,1] = sectionEnd;
             dialogArrSectionName[2] = "<Brch>StarGazing";
             dialogArr[2,0] = "Assets/Resources/Dialogs/Angus/"+dialogArrSectionName[1]+"/AngusDialogStarsStart.txt";
             dialogArr[2,1] = "Assets/Resources/Dialogs/Angus/"+dialogArrSectionName[1]+"/AngusDialogStarsBell.txt";
@@ -109,8 +110,9 @@ using UnityEngine.UI;
                 }
             }
         }
-        void LateUpdate(){
+        void Update(){
+            debugStr = "Current: "+dialogArrSectionName[plotProg[plotKey.SectionIndex]]+plotProg[plotKey.DialogIndex];
             if(debugMode)
-                debugText.text = "Current: "+dialogArrSectionName[plotProg[plotKey.SectionIndex]]+plotProg[plotKey.DialogIndex];
+                debugText.text = debugStr;
         }
 }

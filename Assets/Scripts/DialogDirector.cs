@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 //using NPCCharacters; //?
 public enum characters
 {
@@ -8,14 +9,20 @@ public enum characters
     Gregg,
     Bea,
     Frog,
+    None
 }
 public class DialogDirector : MonoBehaviour
 {
     // Start is called before the first frame update
     public DialogManager dialogManager;
-    public GameObject angusObj;
+
+    [HideInInspector]
     public GameObject angusObjTrigger;
+
+    [HideInInspector]
     public NPCAngus angusDialog;
+
+    [HideInInspector]
     public NPCMove angusMove;
     public GameObject angusObject;
     public bool autoStart;
@@ -23,9 +30,13 @@ public class DialogDirector : MonoBehaviour
 
     public bool isTalking = false; // Is talking is set in Dialog Manager.StartTalking() and EndTalking()
     public bool inCutscene = false;
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
     void Start()
     {
-        angusObjTrigger = FindGameObjectInChildWithTag(angusObj,"TalkTrigger");
+        angusObjTrigger = FindGameObjectInChildWithTag(angusObject,"TalkTrigger");
         angusDialog = GetComponent<NPCAngus>();
         angusMove = angusObject.GetComponent<NPCMove>();   
         if(autoStart)
@@ -36,44 +47,23 @@ public class DialogDirector : MonoBehaviour
     }
     void FixedUpdate()
     {
-        /*Debug.Log(angusDialog.plotProg[plotKey.DialogIndex]);
-        if(angusDialog.plotProg[plotKey.SectionIndex] == 0)
+        if(angusDialog.dialogArrSectionName[angusDialog.plotProg[plotKey.SectionIndex]].Substring(0,6)=="<Load>")
         {
+            angusObject.GetComponent<NPCMove>().EnterTopDownPosition();
+            dialogManager.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            angusDialog.ProgressPlot();
+            SceneManager.LoadScene(angusDialog.dialogArr[angusDialog.plotProg[plotKey.SectionIndex],angusDialog.plotProg[plotKey.DialogIndex]]);
+        }
+            
+            /*
             switch(angusDialog.plotProg[plotKey.DialogIndex])
             {
                 case(0):
                 {
-                    if(angusObj.transform.position.x<1)//angusMove.hasArrived)
-                    {
-                        ProgressPlot(characters.Angus);
-                    }
-                    break;
-                }
-                case(1):
-                {
                     CheckAutoTalk(characters.Angus,0);
                     break;
                 }
-                case(2):
-                {
-                    if(!isTalking)
-                    {
-                        CheckAutoMove(characters.Angus,0,2,-1);
-                        ProgressPlot(characters.Angus);
-                    }
-                    break;
-                }
-                case(3):
-                {
-                    if(!isTalking)
-                    {
-                        CheckAutoMove(characters.Angus,0,2,-1);
-                        ProgressPlot(characters.Angus);
-                    }
-                    break;
-                }
-            }
-        }*/
+            }*/
     }
 
     public void StartCutscene()

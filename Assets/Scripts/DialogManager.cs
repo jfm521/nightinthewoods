@@ -36,7 +36,12 @@ public class DialogManager : MonoBehaviour
     AudioSource talkAudSource;
     public AudioClip clip;
 
-    // Start is called before the first frame update
+
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+    
     void Start()
     {
         talkAudSource = GetComponent<AudioSource>();
@@ -56,7 +61,8 @@ public class DialogManager : MonoBehaviour
         {
             if(other.tag == "TalkTrigger"){ //if player touches npc collider
                 Debug.Log("touching NPC");
-                PreTalking(other.gameObject);
+                if(other.GetComponent<NPCTalktive>().talkable)
+                    PreTalking(other.gameObject);
             }
             if(other.tag == "PlayerTrigger")
             {
@@ -121,8 +127,8 @@ public class DialogManager : MonoBehaviour
         
         talkingObj = touchingObj;
         dialogDirector.isTalking = true;
-        talkingCharacter = touchingObj.GetComponent<NPCTalktive>().characterSelect;
-        dialogDirector.ProgressPlot(talkingCharacter);
+        //talkingCharacter = touchingObj.GetComponent<NPCTalktive>().characterSelect;
+        
 
         //sound stuff
         talkAudSource.clip = clip;
@@ -190,7 +196,6 @@ public class DialogManager : MonoBehaviour
                 talkReady = false;
                 dialogPrompt.SetActive(false);
                 Debug.Log("not touching NPC anymore");
-                EndTalking();
             }
         }
     }
@@ -200,11 +205,13 @@ public class DialogManager : MonoBehaviour
         
             //Reset talk and change plotprog value
             dialogPath = "None";
-            
+
+            dialogDirector.ProgressPlot(talkingCharacter);
             talkingObj = null;
             isTalking = false;
             //touchingObj.transform.parent.GetComponent<AngusAnimation>().isTalking = false; UNCOMMENT THIS FOR ANGUS AMINE, there are 2 of these
             talkReady = false;
+            talkingCharacter = characters.None;
 
             dialogBox.SetActive(false);
             textDisplay.text = "";

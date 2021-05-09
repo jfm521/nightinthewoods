@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NPCMove : MonoBehaviour
 {
@@ -32,6 +33,11 @@ public class NPCMove : MonoBehaviour
     bool moveAfterTalk;
 
     // Called before the first frame update
+    
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
     void Start()
     {
         myBody = gameObject.GetComponent<Rigidbody2D>();
@@ -146,7 +152,7 @@ public class NPCMove : MonoBehaviour
             tempMoveTo = null;
             moveAfterTalk = false;
             NPCTrigger trigger = other.GetComponent<NPCTrigger>();
-            
+
             if(trigger.startCutscene)
                 dialogDirector.StartCutscene();
             else if(trigger.endCutscene)
@@ -166,7 +172,21 @@ public class NPCMove : MonoBehaviour
                 WalkTowards(trigger.moveTo.transform.position.x);
             else if(trigger.progPlot)
                 dialogDirector.ProgressPlot(npcTalkative.characterSelect);
+
+            if(trigger.setTalkable)
+            {
+                if(trigger.talkable)
+                    FindGameObjectInChildWithTag(gameObject, "TalkTrigger").GetComponent<NPCTalktive>().talkable = trigger.talkable;
+            }
+
+            if(trigger.load)
+                SceneManager.LoadScene("StarConnect 1");
         }
+    }
+    public void EnterTopDownPosition()
+    {
+        moveAfterTalk = false;
+        myBody.bodyType = RigidbodyType2D.Static;
     }
     public static GameObject FindGameObjectInChildWithTag (GameObject parent, string tag)
      {

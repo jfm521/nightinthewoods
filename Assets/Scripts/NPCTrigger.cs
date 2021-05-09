@@ -18,10 +18,7 @@ public class NPCTrigger : MonoBehaviour
     [Header ("Cutscene")]
     public bool startCutscene;
     public bool endCutscene;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public bool setTalkable;
+    public bool talkable;
+    public bool load;
 }

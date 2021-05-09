@@ -7,7 +7,13 @@ public class NPCTalktive : MonoBehaviour
     // Start is called before the first frame update
     private string NPCName;
     public bool isTalking;
+    public bool talkable;
     public characters characterSelect = characters.Angus; //characters are an Emun defined in DialogDirector
+
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
     public string GetDialogPath()
     {
         Debug.Log("Get Path");

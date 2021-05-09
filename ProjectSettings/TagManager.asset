@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Star
+  - Pointer
+  - Floor
+  - background
+  - TalkTrigger
+  - NPCTrigger
+  - PlayerTrigger
   layers:
   - Default
   - TransparentFX

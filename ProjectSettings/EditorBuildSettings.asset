@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/star gazing.unity
+    guid: 8ce210aaa012e44388a92f290790467b
+  - enabled: 1
+    path: Assets/Scenes/StarConnect.unity
+    guid: 9905807f39d0a475583c92331eb90357
   m_configObjects: {}

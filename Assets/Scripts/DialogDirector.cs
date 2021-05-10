@@ -14,10 +14,10 @@ public enum characters
 public class DialogDirector : MonoBehaviour
 {
     // Start is called before the first frame update
-    public DialogManager dialogManager;
+    public static DialogManager dialogManager;
 
     [HideInInspector]
-    public GameObject angusObjTrigger;
+    public static GameObject angusObjTrigger;
 
     [HideInInspector]
     public NPCAngus angusDialog;
@@ -27,15 +27,21 @@ public class DialogDirector : MonoBehaviour
     public GameObject angusObject;
     public bool autoStart;
     public int autoMostDist;
+    public bool onBranch;
 
-    public bool isTalking = false; // Is talking is set in Dialog Manager.StartTalking() and EndTalking()
-    public bool inCutscene = false;
+    public static bool isTalking = false; // Is talking is set in Dialog Manager.StartTalking() and EndTalking()
+    public static bool inCutscene = false;
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
     }
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
     void Start()
     {
+        dialogManager = GameObject.Find("DialogPlayer").GetComponent<DialogManager>()  ;
         angusObjTrigger = FindGameObjectInChildWithTag(angusObject,"TalkTrigger");
         angusDialog = GetComponent<NPCAngus>();
         angusMove = angusObject.GetComponent<NPCMove>();   
@@ -47,55 +53,64 @@ public class DialogDirector : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if(angusDialog.dialogArrSectionName[angusDialog.plotProg[plotKey.SectionIndex]].Substring(0,6)=="<Load>")
+        if(NPCAngus.dialogArrSectionName[NPCAngus.plotProg[plotKey.SectionIndex]].Substring(0,6)=="(Load)")
         {
-            angusObject.GetComponent<NPCMove>().EnterTopDownPosition();
-            dialogManager.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-            angusDialog.ProgressPlot();
-            SceneManager.LoadScene(angusDialog.dialogArr[angusDialog.plotProg[plotKey.SectionIndex],angusDialog.plotProg[plotKey.DialogIndex]]);
-        }
-            
-            /*
-            switch(angusDialog.plotProg[plotKey.DialogIndex])
+            if(NPCAngus.plotProg[plotKey.SectionIndex] == 1)
             {
-                case(0):
-                {
-                    CheckAutoTalk(characters.Angus,0);
-                    break;
-                }
-            }*/
+                SceneManager.LoadScene(NPCAngus.dialogArr[NPCAngus.plotProg[plotKey.SectionIndex],NPCAngus.plotProg[plotKey.DialogIndex]]);
+            }
+        }
+        angusObject.GetComponent<Animator>().SetBool("isTalking", isTalking);
+        /*if(NPCAngus.plotProg[plotKey.SectionIndex] == 2)
+        {
+            CameraStars.isCutscene = true;
+            CameraStars.GoTo(GameObject.Find("Constellation 1").transform.position);
+        }*/
     }
 
-    public void StartCutscene()
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(NPCAngus.dialogArrSectionName[NPCAngus.plotProg[plotKey.SectionIndex]].Substring(0,6)=="(Load)")
+        {
+            //Camera.main.GetComponent<CameraFollow>().isCutscene = true;
+            angusMove.StartTopDown();
+            
+            dialogManager.StartTopDown(GameObject.Find("MaePos").transform.position);
+            ProgressPlot(characters.Angus);
+            AutoTalk(characters.Angus);
+            onBranch = true;
+        }
+    }
+    public static void StartCutscene()
     {
         inCutscene = true;
         dialogManager.inCutscene = true;
     }
-    public void EndCutscene()
+    public static void EndCutscene()
     {
         inCutscene = false;
         dialogManager.inCutscene = false;
     }
-    public void ProgressPlot(characters character) //This should have more parameters to determine whoes prog
+    public static void ProgressPlot(characters character) //This should have more parameters to determine whoes prog
     { 
         Debug.Log("PP in DD");
         switch(character)
             {
                 case(characters.Angus): 
                 {
-                    angusDialog.ProgressPlot();
+                    NPCAngus.ProgressPlot();
                     break;
                 }
             }
     }
-    public void ProgressPlot(characters character, string branch) //This should have more parameters to determine whoes prog
+    public static void ProgressPlot(characters character, string branch) //This should have more parameters to determine whoes prog
     { 
         Debug.Log("PP in DD (branch)");
         switch(character)
             {
                 case(characters.Angus): 
                 {
-                    angusDialog.ProgressPlot(branch);
+                    NPCAngus.ProgressPlot(branch);
                     break;
                 }
             }
@@ -104,7 +119,7 @@ public class DialogDirector : MonoBehaviour
     {
         switch(character){
             case(characters.Angus): {
-                if(angusDialog.plotProg[plotKey.SectionIndex] == sectionValue)
+                if(NPCAngus.plotProg[plotKey.SectionIndex] == sectionValue)
                 {
                     angusMove.WalkTowards(walkDist);
                 }
@@ -112,25 +127,82 @@ public class DialogDirector : MonoBehaviour
             }
         }
     }
-    public void CheckAutoMove(characters character,int sectionValue, int dialogValue, int walkDist) //Check (Section) and Automatically start a conversation
+    public void AutoMove(characters character, int walkDest) //Check (Section) and Automatically start a conversation
     {
         switch(character){
             case(characters.Angus): {
-                if(angusDialog.plotProg[plotKey.SectionIndex] == sectionValue
-                    &&angusDialog.plotProg[plotKey.DialogIndex] == dialogValue)
-                {
-                    angusMove.WalkTowards(walkDist);
-                }
+                angusMove.WalkTowards(walkDest);
                 break;
             }
         }
     }
 
-    public void AutoTalk(characters character) //Check (Section) and Automatically start a conversation
+    public static void AutoTalk(characters character) //Check (Section) and Automatically start a conversation
     {
         if(!isTalking){
             switch(character){
                 case(characters.Angus): {
+                    dialogManager.AutoTalking(angusObjTrigger);
+                    break;
+                }
+            }
+        }
+    }
+    public static void AutoTalkCam(characters character) //Check (Section) and Automatically start a conversation
+    {
+        if(!isTalking){
+            switch(character){
+                case(characters.Angus): {
+                    ProgressPlot(characters.Angus);
+                    switch(NPCAngus.dialogArr[NPCAngus.plotProg[plotKey.SectionIndex],
+                    NPCAngus.plotProg[plotKey.DialogIndex]])
+                    {
+                        case("(Pope)"):
+                        {
+                            CameraStars.GoTo(GameObject.Find("Constellation1").transform.position);
+                            break;
+                        }
+                        case("(Whale)"):
+                        {
+                            CameraStars.GoTo(GameObject.Find("Constellation2").transform.position);
+                            break;
+                        }
+                        case("(Bell)"):
+                        {
+                            CameraStars.GoTo(GameObject.Find("Constellation3").transform.position);
+                            break;
+                        }
+                        case("(Thief)"):
+                        {
+                            CameraStars.GoTo(GameObject.Find("Constellation4").transform.position);
+                            break;
+                        }
+                    }
+                    ProgressPlot(characters.Angus);
+                    dialogManager.AutoTalking(angusObjTrigger);
+                    break;
+                }
+            }
+        }
+    }
+    public static void AutoTalkCam(characters character, Vector3 camPos) //Check (Section) and Automatically start a conversation
+    {
+        if(!isTalking){
+            switch(character){
+                case(characters.Angus): {
+                    CameraStars.GoTo(camPos);
+                    dialogManager.AutoTalking(angusObjTrigger);
+                    break;
+                }
+            }
+        }
+    }
+    public static void AutoTalk(characters character, string branch) //Check (Section) and Automatically start a conversation
+    {
+        if(!isTalking){
+            switch(character){
+                case(characters.Angus): {
+                    ProgressPlot(characters.Angus,branch);
                     dialogManager.AutoTalking(angusObjTrigger);
                     break;
                 }
@@ -142,22 +214,7 @@ public class DialogDirector : MonoBehaviour
         if(!isTalking){
             switch(character){
                 case(characters.Angus): {
-                    if(angusDialog.plotProg[plotKey.SectionIndex] == sectionValue)
-                    {
-                        dialogManager.AutoTalking(angusObjTrigger);
-                    }
-                    break;
-                }
-            }
-        }
-    }
-    public void CheckAutoTalk(characters character,int sectionValue,int dialogValue) //Check (Section&Dialog) and Automatically start a conversation
-    {
-        if(!isTalking){
-            switch(character){
-                case(characters.Angus): {
-                    if(angusDialog.plotProg[plotKey.SectionIndex] == sectionValue
-                    &&angusDialog.plotProg[plotKey.DialogIndex] == dialogValue)
+                    if(NPCAngus.plotProg[plotKey.SectionIndex] == sectionValue)
                     {
                         dialogManager.AutoTalking(angusObjTrigger);
                     }

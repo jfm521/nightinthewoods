@@ -8,9 +8,9 @@ public class DialogManager : MonoBehaviour
 {
 
     //gameobject stuff to turn bubble + text sprites on and off
-    public GameObject dialogPrompt, dialogBox;
+    public GameObject dialogPrompt, dialogBox, dialogCanvas;
     private DialogDirector dialogDirector;
-    public Vector3 dialogBoxOffSet = new Vector3(0,-10,0);
+    Vector3 dialogBoxOffSet = new Vector3(0,5,0);
     public GameObject talkingObj;
     public characters talkingCharacter;
     //dialogBox has to be set in inspector
@@ -24,12 +24,15 @@ public class DialogManager : MonoBehaviour
 
     //these are all the text + sentence variables
     public TextMeshProUGUI textDisplay;
-    private float typingSpeedNormal = 0.04f;
-    private float typingSpeedFast = 0.008f; 
+    private float typingSpeedNormal = 0.044f;
+    private float typingSpeedFast = 0.0008f; 
     private float typingSpeed; //typing speed set in start, spaghetti typing speed solution
     private string dialogPath = "None";
     private StreamReader reader;
     string lineText = "-";
+    int currChoice = 0;
+    string[] choiceArr = new string[1];
+    bool isChoosing = false;
     public Color[] colorArr = new Color[4];//Colors of text for characters
 
     //sounds
@@ -40,6 +43,7 @@ public class DialogManager : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(dialogCanvas);
     }
     
     void Start()
@@ -52,7 +56,7 @@ public class DialogManager : MonoBehaviour
 
         typingSpeed = typingSpeedNormal; //set default typing speed
 
-        colorArr[0] = new Color(0,0,0);
+        colorArr[0] = new Color(1,1,1);
         colorArr[1] = new Color(0.8f,0.3f,0.086f); //Hard Coded colors of text for different charas
     }
 
@@ -71,15 +75,15 @@ public class DialogManager : MonoBehaviour
                     switch(trigger.talkTo){
                         case(characters.Angus):
                         {
-                            AutoTalking(GameObject.Find("StockAngus").transform.GetChild(0).gameObject); //I didn't have more time to make a character finding system, so be careful when changing Angus'name!
+                            AutoTalking(DialogDirector.FindGameObjectInChildWithTag(dialogDirector.angusObject,"TalkTrigger")); 
                             //touchingObj = GameObject.Find("StockAngus");
                             break;}
                     }   
                 }
                 if(trigger.startCutscene)
-                    dialogDirector.StartCutscene();
+                    DialogDirector.StartCutscene();
                 else if(trigger.endCutscene)
-                    dialogDirector.EndCutscene();
+                    DialogDirector.EndCutscene();
             }
         }
     }
@@ -109,7 +113,7 @@ public class DialogManager : MonoBehaviour
                 StartTalking();
         }
 
-        if(dialogDirector.isTalking)
+        if(DialogDirector.isTalking)
             dialogBox.transform.position = talkingObj.transform.position + dialogBoxOffSet;
 
         if(Input.GetKey(KeyCode.X)) //Lazy method for speeding up text
@@ -126,7 +130,7 @@ public class DialogManager : MonoBehaviour
         dialogPrompt.SetActive(false);
         
         talkingObj = touchingObj;
-        dialogDirector.isTalking = true;
+        DialogDirector.isTalking = true;
         //talkingCharacter = touchingObj.GetComponent<NPCTalktive>().characterSelect;
         
 
@@ -199,14 +203,18 @@ public class DialogManager : MonoBehaviour
             }
         }
     }
-
     public void EndTalking()
     {
         
             //Reset talk and change plotprog value
             dialogPath = "None";
 
-            dialogDirector.ProgressPlot(talkingCharacter);
+            if(!dialogDirector.onBranch)
+                DialogDirector.ProgressPlot(talkingCharacter);
+            else{
+                if(NPCAngus.plotProg[plotKey.SectionIndex]==2)
+                    GameObject.Find("Star Manager").GetComponent<manageStars>().checkAllLinked();
+            }
             talkingObj = null;
             isTalking = false;
             //touchingObj.transform.parent.GetComponent<AngusAnimation>().isTalking = false; UNCOMMENT THIS FOR ANGUS AMINE, there are 2 of these
@@ -216,7 +224,41 @@ public class DialogManager : MonoBehaviour
             dialogBox.SetActive(false);
             textDisplay.text = "";
             lineText = "";
-            dialogDirector.isTalking = false;
+            DialogDirector.isTalking = false;
+    }
+    public void StartTopDown(Vector3 position)
+    {   
+        transform.position = position;
+        transform.parent = GameObject.Find("MaePos").transform;
+        gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
+        GameObject.Find("Right Arm").GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
+        GameObject.Find("Left Arm").GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
+        GameObject.Find("Legs").GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
+        GameObject.Find("Body").GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
+        GameObject.Find("Head").GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
+        Reset();
+    }
+    public void Reset()
+    {
+        talkingObj = null;
+        talkingCharacter = characters.None;
+        talkReady = false; //if player is touching npc
+        touchingObj = null;
+        canContinue = false; //if text has finished and can continue
+        isTalking = false;
+        inCutscene = false;
+        dialogPath = "None";
+        reader.Close();
+        lineText = "-";
+    }
+    void StartTopDown()
+    {
+
+    }
+    void OnDisabled()
+    {
+        reader.Close();
     }
 }
 

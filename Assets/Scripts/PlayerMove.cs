@@ -89,8 +89,8 @@ public class PlayerMove : MonoBehaviour
     void FixedUpdate()
     {
         vVel = myBody.velocity.y;
-
-        HandleMovement();
+        if(!DialogDirector.isTalking)
+            HandleMovement();
         TimeTripleJump();
         //DetectCollisions();
     }

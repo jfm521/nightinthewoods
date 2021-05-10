@@ -31,6 +31,7 @@ public class NPCMove : MonoBehaviour
     DialogDirector dialogDirector;
     GameObject tempMoveTo;
     bool moveAfterTalk;
+    public Animator angusAnimator;
 
     // Called before the first frame update
     
@@ -64,10 +65,14 @@ public class NPCMove : MonoBehaviour
     void FixedUpdate()
     {
         vVel = myBody.velocity.y;
+        if(myBody.velocity.x == 0 && myBody.velocity.y == 0)
+            angusAnimator.SetBool("isWalking", false);
+        else
+            angusAnimator.SetBool("isWalking", true);
 
         HandleMovement();
 
-        if(moveAfterTalk&&!dialogDirector.isTalking)
+        if(moveAfterTalk&&!DialogDirector.isTalking)
             WalkTowards(tempMoveTo.transform.position.x);
     }
 
@@ -118,6 +123,7 @@ public class NPCMove : MonoBehaviour
             if ((.1 > hVel) && (-.1 < hVel))
             {
                 hVel = 0;
+                angusAnimator.SetBool("isWalking", false);
                 hasArrived = true;
             }
             else if (hVel > 0)
@@ -137,6 +143,7 @@ public class NPCMove : MonoBehaviour
     // Sets the NPC's target location
     public void WalkTowards(float goalXInput)
     {
+        
         hasArrived = false;
         goalX = goalXInput;
     }
@@ -154,12 +161,12 @@ public class NPCMove : MonoBehaviour
             NPCTrigger trigger = other.GetComponent<NPCTrigger>();
 
             if(trigger.startCutscene)
-                dialogDirector.StartCutscene();
+                DialogDirector.StartCutscene();
             else if(trigger.endCutscene)
-                dialogDirector.EndCutscene();
+                DialogDirector.EndCutscene();
 
             if(trigger.talk){
-                dialogDirector.AutoTalk(npcTalkative.characterSelect);
+                DialogDirector.AutoTalk(npcTalkative.characterSelect);
                 if(trigger.moveAfterTalk)
                 {
                     moveAfterTalk = true;
@@ -171,7 +178,7 @@ public class NPCMove : MonoBehaviour
             else if(trigger.move)
                 WalkTowards(trigger.moveTo.transform.position.x);
             else if(trigger.progPlot)
-                dialogDirector.ProgressPlot(npcTalkative.characterSelect);
+                DialogDirector.ProgressPlot(npcTalkative.characterSelect);
 
             if(trigger.setTalkable)
             {
@@ -183,10 +190,17 @@ public class NPCMove : MonoBehaviour
                 SceneManager.LoadScene("StarConnect 1");
         }
     }
-    public void EnterTopDownPosition()
+    public void StartTopDown()
     {
         moveAfterTalk = false;
         myBody.bodyType = RigidbodyType2D.Static;
+        transform.position = GameObject.Find("AngusPos").transform.position;
+        transform.parent = GameObject.Find("AngusPos").transform;
+        GameObject.Find("Angus Body").GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
+        GameObject.Find("Angus Head").GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
+        GameObject.Find("AngusLegs").GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
+        GameObject.Find("AngusArm1").GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
+        GameObject.Find("AngusArm2").GetComponent<SpriteRenderer>().color = new Color(0,0,0,0);
     }
     public static GameObject FindGameObjectInChildWithTag (GameObject parent, string tag)
      {

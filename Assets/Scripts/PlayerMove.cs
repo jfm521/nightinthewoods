@@ -89,8 +89,8 @@ public class PlayerMove : MonoBehaviour
     void FixedUpdate()
     {
         vVel = myBody.velocity.y;
-
-        HandleMovement();
+        if(!DialogDirector.isTalking)
+            HandleMovement();
         TimeTripleJump();
         //DetectCollisions();
     }
@@ -198,17 +198,20 @@ public class PlayerMove : MonoBehaviour
                 {
                     jumpVel += tripleJumpHeight;
                     tripleJump = 0;
+                    animator.SetBool("IsJumping", true);
                 }
                 else
                 {
                     jumpVel += jumpHeight;
                 }
                 onFloor = false;
+                animator.SetBool("IsJumping", true);
                 tripleJumpTimer = 0;
 
                 //sounds
                 audio.clip = clips[1];
                 audio.Play();
+                
             }
             jump = false;
         }
@@ -226,6 +229,7 @@ public class PlayerMove : MonoBehaviour
         if(collisionInfo.gameObject.tag == "Floor")
         {
             onFloor = true;
+            animator.SetBool("IsJumping", false);
         }
     }
 

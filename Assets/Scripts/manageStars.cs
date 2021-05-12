@@ -19,6 +19,7 @@ public class manageStars : MonoBehaviour
     bool cons2Done;
     bool cons3Done;
     bool cons4Done;
+    bool startCutscene;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +33,14 @@ public class manageStars : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            cons1Done = true;
+            cons2Done = true;
+            cons3Done = true;
+            cons4Done = true;
+            DialogDirector.AutoTalk(characters.Angus,"Bell");
+        }
         // Detects if constellation 1 is finished
         if (!cons1Done)
         {
@@ -47,6 +55,7 @@ public class manageStars : MonoBehaviour
             if (starcount == cons1.Length)
             {
                 cons1Done = true;
+                DialogDirector.AutoTalk(characters.Angus,"Pope");
                 Debug.Log("CONSTELLATION 1 FINISHED");
             }
 
@@ -68,6 +77,7 @@ public class manageStars : MonoBehaviour
             if (starcount == cons2.Length)
             {
                 cons2Done = true;
+                DialogDirector.AutoTalk(characters.Angus,"Whale");
                 Debug.Log("CONSTELLATION 2 FINISHED");
             }
 
@@ -89,6 +99,7 @@ public class manageStars : MonoBehaviour
             if (starcount == cons3.Length)
             {
                 cons3Done = true;
+                DialogDirector.AutoTalk(characters.Angus,"Bell");
                 Debug.Log("CONSTELLATION 3 FINISHED");
             }
 
@@ -110,10 +121,21 @@ public class manageStars : MonoBehaviour
             if (starcount == cons4.Length)
             {
                 cons4Done = true;
+                DialogDirector.AutoTalk(characters.Angus,"Thief");
                 Debug.Log("CONSTELLATION 4 FINISHED");
             }
 
             starcount = 0;
+        }
+    }
+    public void checkAllLinked()
+    {
+        if(cons1Done&&cons2Done&&cons3Done&&cons4Done&&!startCutscene)
+        {
+            startCutscene = true;
+            DialogDirector.ProgressPlot(characters.Angus,"<END>");
+            DialogDirector.AutoTalkCam(characters.Angus,GameObject.Find("Constellation 1").transform.position);
+            CameraStars.isCutscene = true;
         }
     }
 }

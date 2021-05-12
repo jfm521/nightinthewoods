@@ -17,13 +17,13 @@ public class AngusAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentPosition = transform.position;
+        /*currentPosition = transform.position;
         if (currentPosition == lastPos){
-            Angusanimator.SetBool("isWalking", false);
+            
         } else if (currentPosition != lastPos){
             Angusanimator.SetBool("isWalking", true);
         }
-        lastPos = currentPosition;
+        lastPos = currentPosition;*/
     } 
     
 }

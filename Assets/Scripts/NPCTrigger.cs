@@ -21,4 +21,8 @@ public class NPCTrigger : MonoBehaviour
     public bool setTalkable;
     public bool talkable;
     public bool load;
+
+    //jackie's attempt at dialogue initiation
+    [Header ("Jackie's nonsense")]
+    public bool autoStart;
 }

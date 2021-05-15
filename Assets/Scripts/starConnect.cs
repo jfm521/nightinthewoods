@@ -88,7 +88,7 @@ public class starConnect : MonoBehaviour
         }
 
         // Changes star size if moused over
-        if (big && !(starFriend1Connected && starFriend2Connected))
+        /*if (big && !(starFriend1Connected && starFriend2Connected))
         {
             if (gameObject.transform.localScale.x < 1.5 && gameObject.transform.localScale.y < 1.5)
             {
@@ -101,7 +101,7 @@ public class starConnect : MonoBehaviour
             {
                 gameObject.transform.localScale -= new Vector3(.1f, .1f);
             }
-        }
+        }*/
 
     }
 

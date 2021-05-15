@@ -1612,6 +1612,11 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: f0ce7208e908341399ace113212d9158, type: 3}
     - target: {fileID: 3061507168311620693, guid: b4de83742ed65d341ae67de2ddd1f3d7,
         type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1183601435}
+    - target: {fileID: 3061507168311620693, guid: b4de83742ed65d341ae67de2ddd1f3d7,
+        type: 3}
       propertyPath: dialogBox
       value: 
       objectReference: {fileID: 17116447}
@@ -12583,6 +12588,11 @@ PrefabInstance:
       objectReference: {fileID: 1447822085}
     - target: {fileID: 6565800223116315544, guid: e4c3844ac2f46a3448c960a7061b87c3,
         type: 3}
+      propertyPath: autoStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6565800223116315544, guid: e4c3844ac2f46a3448c960a7061b87c3,
+        type: 3}
       propertyPath: startCutscene
       value: 1
       objectReference: {fileID: 0}
@@ -15339,6 +15349,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: objNPCTriggerFirstTalk
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479808921140860621, guid: e4c3844ac2f46a3448c960a7061b87c3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6565800223116315544, guid: e4c3844ac2f46a3448c960a7061b87c3,
         type: 3}

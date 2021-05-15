@@ -33,6 +33,11 @@ public class NPCMove : MonoBehaviour
     bool moveAfterTalk;
     public Animator angusAnimator;
 
+    // jackie's attempt at dialog initiation
+    bool autoStartOverride;
+    bool xButtonPressed;
+    NPCTrigger trigger;
+
     // Called before the first frame update
     
     void Awake()
@@ -158,38 +163,81 @@ public class NPCMove : MonoBehaviour
         {
             tempMoveTo = null;
             moveAfterTalk = false;
-            NPCTrigger trigger = other.GetComponent<NPCTrigger>();
 
-            if(trigger.startCutscene)
-                DialogDirector.StartCutscene();
-            else if(trigger.endCutscene)
-                DialogDirector.EndCutscene();
+            //jackie's dialog stuff, set npctrigger above so it's referenceable in different scripts
+            /*NPCTrigger*/ trigger = other.GetComponent<NPCTrigger>();
 
-            if(trigger.talk){
-                DialogDirector.AutoTalk(npcTalkative.characterSelect);
-                if(trigger.moveAfterTalk)
-                {
-                    moveAfterTalk = true;
-                    tempMoveTo = trigger.moveTo;
-                }
-            }
-            if(trigger.stop)
-                StopWalking();
-            else if(trigger.move)
-                WalkTowards(trigger.moveTo.transform.position.x);
-            else if(trigger.progPlot)
-                DialogDirector.ProgressPlot(npcTalkative.characterSelect);
-
-            if(trigger.setTalkable)
+            //jackie's attempt at dialog initiation
+            if (trigger.autoStart || autoStartOverride)
             {
-                if(trigger.talkable)
-                    FindGameObjectInChildWithTag(gameObject, "TalkTrigger").GetComponent<NPCTalktive>().talkable = trigger.talkable;
-            }
 
-            if(trigger.load)
-                SceneManager.LoadScene("StarConnect 1");
+                /*if (trigger.startCutscene)
+                    DialogDirector.StartCutscene();
+                else if (trigger.endCutscene)
+                    DialogDirector.EndCutscene();
+
+                if (trigger.talk)
+                {
+                    DialogDirector.AutoTalk(npcTalkative.characterSelect);
+                    if (trigger.moveAfterTalk)
+                    {
+                        moveAfterTalk = true;
+                        tempMoveTo = trigger.moveTo;
+                    }
+                }
+                if (trigger.stop)
+                    StopWalking();
+                else if (trigger.move)
+                    WalkTowards(trigger.moveTo.transform.position.x);
+                else if (trigger.progPlot)
+                    DialogDirector.ProgressPlot(npcTalkative.characterSelect);
+
+                if (trigger.setTalkable)
+                {
+                    if (trigger.talkable)
+                        FindGameObjectInChildWithTag(gameObject, "TalkTrigger").GetComponent<NPCTalktive>().talkable = trigger.talkable;
+                }
+
+                if (trigger.load)
+                    SceneManager.LoadScene("StarConnect 1");*/
+            }
         }
     }
+
+    //jackie's attempt at dialog initiation; moved this here from OnTriggerEnter2D
+    void InterpretTrigger()
+    {
+        if (trigger.startCutscene)
+            DialogDirector.StartCutscene();
+        else if (trigger.endCutscene)
+            DialogDirector.EndCutscene();
+
+        if (trigger.talk)
+        {
+            DialogDirector.AutoTalk(npcTalkative.characterSelect);
+            if (trigger.moveAfterTalk)
+            {
+                moveAfterTalk = true;
+                tempMoveTo = trigger.moveTo;
+            }
+        }
+        if (trigger.stop)
+            StopWalking();
+        else if (trigger.move)
+            WalkTowards(trigger.moveTo.transform.position.x);
+        else if (trigger.progPlot)
+            DialogDirector.ProgressPlot(npcTalkative.characterSelect);
+
+        if (trigger.setTalkable)
+        {
+            if (trigger.talkable)
+                FindGameObjectInChildWithTag(gameObject, "TalkTrigger").GetComponent<NPCTalktive>().talkable = trigger.talkable;
+        }
+
+        if (trigger.load)
+            SceneManager.LoadScene("StarConnect 1");
+    }
+
     public void StartTopDown()
     {
         moveAfterTalk = false;

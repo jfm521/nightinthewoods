@@ -28,6 +28,11 @@ public class starConnect : MonoBehaviour
     // Debug
     public bool debugOn;
 
+    // Changes the star's size when moused over
+    bool big;
+    //Animator stuff
+    public Animator Animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,10 +72,6 @@ public class starConnect : MonoBehaviour
                 float mousex = cam.ScreenToWorldPoint(Input.mousePosition).x;
                 float mousey = cam.ScreenToWorldPoint(Input.mousePosition).y;
                 myLine.SetPosition(1, new Vector3(mousex - gameObject.transform.position.x, mousey - gameObject.transform.position.y));
-                if (debugOn)
-                {
-                    Debug.Log("Drawing line");
-                }
             }
             else
             {
@@ -87,14 +88,17 @@ public class starConnect : MonoBehaviour
         {
             connectedLine.SetPosition(1, new Vector3(starFriend1.gameObject.transform.position.x - gameObject.transform.position.x, starFriend1.gameObject.transform.position.y - gameObject.transform.position.y));
         }
+
     }
 
     // When mouse is clicked while touching star, connect or cancel
     void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetMouseButtonDown(0))
+        if (collision.tag == "Pointer") 
         {
-            if (collision.tag == "Pointer")
+            big = true;
+            Animator.SetBool("MouseOver", true);
+            if (Input.GetMouseButton(0))
             {
                 if (collision.GetComponent<pointerMove>().isConnecting)
                 {
@@ -111,6 +115,16 @@ public class starConnect : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    // When pointer exits collision with star, star stops being bigger
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Pointer")
+        {
+            big = false;
+            Animator.SetBool("MouseOver", false);
         }
     }
 }

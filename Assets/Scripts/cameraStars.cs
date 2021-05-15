@@ -9,7 +9,6 @@ public class CameraStars : CameraFollow
     bool isMovable;
     void Update()
     {
-        Debug.Log(isMovable);
     }
 
     void FixedUpdate()
@@ -37,7 +36,6 @@ public class CameraStars : CameraFollow
         {
             isMovable = false;
         }
-        Debug.Log("Enter collision");
     }
 
     void OnTriggerExit2D(Collider2D collision)
@@ -46,6 +44,5 @@ public class CameraStars : CameraFollow
         {
             isMovable = true;
         }
-        Debug.Log("Exit collision");
     }
 }

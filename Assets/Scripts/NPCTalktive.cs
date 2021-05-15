@@ -1,28 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using NPCCharacters;
+//using NPCCharacters;
 public class NPCTalktive : MonoBehaviour
 {
     // Start is called before the first frame update
     private string NPCName;
-    public enum characters
-    {
-        Angus,
-        Gregg,
-        Bea,
-        Frog,
-    }
-    public characters characterSelect = characters.Angus;
+    public bool isTalking;
+    public bool talkable;
+    public characters characterSelect = characters.Angus; //characters are an Emun defined in DialogDirector
+
     void Awake()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        DontDestroyOnLoad(gameObject);
     }
     public string GetDialogPath()
     {
@@ -30,7 +20,7 @@ public class NPCTalktive : MonoBehaviour
         if(characterSelect == characters.Angus)
         {
             Debug.Log("Get Angus");
-            return GameObject.Find("DialogDirector").GetComponent<NPCAngus>().CheckPlotProg();
+            return GameObject.Find("DialogDirector").GetComponent<NPCAngus>().GetDialogPath();
         }
         return "Error in GetDialogPath";
     }

@@ -51,18 +51,15 @@ public class PlayerMove : MonoBehaviour
     Rigidbody2D myBody;
     BoxCollider2D myCollider;
 
+    // Angus (for collision ignore)
+    public GameObject angus;
+
     //Sound stuff
     AudioSource audio;
     public AudioClip[] clips;
-    
-    //Player sprite renderer
-    SpriteRenderer maeHead;
-    SpriteRenderer maeBody;
 
-    //Parts of the player
-    public GameObject Head;
-    public GameObject Body;
-
+    //Animation Stuff
+    public Animator animator;
 
 
     // Called before the first frame update
@@ -71,10 +68,9 @@ public class PlayerMove : MonoBehaviour
         myBody = gameObject.GetComponent<Rigidbody2D>();
         myCollider = gameObject.GetComponent<BoxCollider2D>();
 
-        audio = GetComponent<AudioSource>();
+        Physics2D.IgnoreCollision(angus.GetComponent<Collider2D>(), myCollider);
         
-        maeHead = Head.GetComponent<SpriteRenderer>();
-        maeBody = Body.GetComponent<SpriteRenderer>();
+        audio = GetComponent<AudioSource>();
     }
 
 
@@ -93,8 +89,8 @@ public class PlayerMove : MonoBehaviour
     void FixedUpdate()
     {
         vVel = myBody.velocity.y;
-
-        HandleMovement();
+        if(!DialogDirector.isTalking)
+            HandleMovement();
         TimeTripleJump();
         //DetectCollisions();
     }
@@ -109,18 +105,19 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             moveDir = 1;
-            maeHead.flipX = false;
-            maeBody.flipX = false;
+            animator.SetBool("IsRunning", true);
+            animator.SetBool("FacingLeft", false);
         }
         else if (Input.GetKey(KeyCode.A))
         {
             moveDir = -1;
-            maeHead.flipX = true;
-            maeBody.flipX = true;
+            animator.SetBool("IsRunning", true);
+            animator.SetBool("FacingLeft", true);
         }
         else
         {
             moveDir = 0;
+            animator.SetBool("IsRunning", false);
             if (tripleJump > 0)
             {
                 tripleJump = 0;
@@ -184,13 +181,12 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
-        if(moveDir == 0 && audio.clip.name == "walking through leaves")
+        if(moveDir == 0 /* && audio.clip.name == "walking through leaves" */)
         {
             audio.Stop();
         }
 
         // Changes the player's vertical velocity when they jump
-
         jumpVel = myBody.velocity.y;
 
         if (jump == true)
@@ -249,15 +245,5 @@ public class PlayerMove : MonoBehaviour
             }
         }
     }
-
-
-
-
-    // Detects for collision with the floor
-    /*void DetectCollisions()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(transform.position.x + myBody.velocity.x, transform.position.y + myBody.velocity.y), 1);
-        Debug.DrawRay(transform.position, new Vector3(transform.position.x + myBody.velocity.x, transform.position.y + myBody.velocity.y), Color.black);
-    }*/
 
 }

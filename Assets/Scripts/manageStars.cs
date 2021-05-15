@@ -60,7 +60,7 @@ public class manageStars : MonoBehaviour
             if (starcount == cons1.Length)
             {
                 cons1Done = true;
-                //DialogDirector.AutoTalk(characters.Angus,"Pope");
+                DialogDirector.AutoTalk(characters.Angus,"Pope");
                 Debug.Log("CONSTELLATION 1 FINISHED");
                 Instantiate(pope, new Vector3(-6.842961f, 3.600998f), Quaternion.identity);
             }
@@ -83,7 +83,7 @@ public class manageStars : MonoBehaviour
             if (starcount == cons2.Length)
             {
                 cons2Done = true;
-                //DialogDirector.AutoTalk(characters.Angus,"Whale");
+                DialogDirector.AutoTalk(characters.Angus,"Whale");
                 Debug.Log("CONSTELLATION 2 FINISHED");
                 Instantiate(whale, new Vector3(-3.33f, -3.21f), Quaternion.identity);
             }
@@ -106,7 +106,7 @@ public class manageStars : MonoBehaviour
             if (starcount == cons3.Length)
             {
                 cons3Done = true;
-                //DialogDirector.AutoTalk(characters.Angus,"Bell");
+                DialogDirector.AutoTalk(characters.Angus,"Bell");
                 Debug.Log("CONSTELLATION 3 FINISHED");
                 Instantiate(bell, new Vector3(7.497038f, -2.109002f), Quaternion.identity);
             }
@@ -129,7 +129,7 @@ public class manageStars : MonoBehaviour
             if (starcount == cons4.Length)
             {
                 cons4Done = true;
-                //DialogDirector.AutoTalk(characters.Angus,"Thief");
+                DialogDirector.AutoTalk(characters.Angus,"Thief");
                 Debug.Log("CONSTELLATION 4 FINISHED");
                 Instantiate(cat, new Vector3(3.35f, 5.11f), Quaternion.identity);
             }

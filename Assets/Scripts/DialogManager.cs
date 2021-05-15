@@ -38,6 +38,8 @@ public class DialogManager : MonoBehaviour
     //sounds
     AudioSource talkAudSource;
     public AudioClip clip;
+    //Animation stuff
+    public Animator animator;
 
 
     void Awake()
@@ -170,11 +172,16 @@ public class DialogManager : MonoBehaviour
             {
                 talkingObj = gameObject;
                 textDisplay.color = colorArr[0];
+                animator.SetBool("IsTalking", true);
+                animator.SetBool("AngusTalking", false);
+
             }
             else if(lineText.Substring(0,2) == "A:") //Angus's line
             {
                 talkingObj = touchingObj; //ANGUS
                 textDisplay.color = colorArr[1];
+                animator.SetBool("IsTalking", false);
+                animator.SetBool("AngusTalking", true);
             }
             lineText = lineText.Substring(2);
 
@@ -189,6 +196,8 @@ public class DialogManager : MonoBehaviour
             //hide the big bubble too
             dialogBox.SetActive(false);
             EndTalking();
+            animator.SetBool("IsTalking", false);
+            animator.SetBool("AngusTalking", false);
         }
     }
 

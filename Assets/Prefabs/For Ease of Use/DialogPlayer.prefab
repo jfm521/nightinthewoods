@@ -212,8 +212,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogPrompt: {fileID: 0}
   dialogBox: {fileID: 0}
-  dialogBoxOffSet: {x: 0, y: 1, z: 0}
+  dialogCanvas: {fileID: 0}
   talkingObj: {fileID: 0}
+  talkingCharacter: 0
+  inCutscene: 0
   textDisplay: {fileID: 0}
   colorArr:
   - {r: 0, g: 0, b: 0, a: 0}

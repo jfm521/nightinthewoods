@@ -1,0 +1,668 @@
+fileFormatVersion: 2
+guid: 86ebb1c17b519fa48ad746c86efe4c52
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2549545454021826325
+    second: maejump_0
+  - first:
+      213: -157142701236114907
+    second: maejump_1
+  - first:
+      213: -3140328680383231233
+    second: maejump_2
+  - first:
+      213: 499001705022061181
+    second: maejump_3
+  - first:
+      213: -8099053215810346201
+    second: maejump_4
+  - first:
+      213: 5882218839488115271
+    second: maejump_5
+  - first:
+      213: 4519502742002451656
+    second: maejump_6
+  - first:
+      213: -8412967046499746934
+    second: maejump_7
+  - first:
+      213: -665436890215301626
+    second: maejump_8
+  - first:
+      213: 8182629940176581001
+    second: maejump_9
+  - first:
+      213: 3514568454624176048
+    second: maejump_10
+  - first:
+      213: -7763392343363168676
+    second: maejump_11
+  - first:
+      213: 6092582932479428979
+    second: maejump_12
+  - first:
+      213: 5722224577896220382
+    second: maejump_13
+  - first:
+      213: -5690513140036366886
+    second: maejump_14
+  - first:
+      213: -7510241793240833352
+    second: maejump_15
+  - first:
+      213: -3935590821713287384
+    second: maejump_16
+  - first:
+      213: -1451396564977385749
+    second: maejump_17
+  - first:
+      213: 3531094993472819248
+    second: maejump_18
+  - first:
+      213: -6101353142362209799
+    second: maejump_19
+  - first:
+      213: 8687544164537069489
+    second: maejump_20
+  - first:
+      213: 2555962347469857447
+    second: maejump_21
+  - first:
+      213: 4924476102641558824
+    second: maejump_22
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 300
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: maejump_0
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 1725
+        width: 195
+        height: 286
+      alignment: 9
+      pivot: {x: 0.6618823, y: 0.93007886}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 517dea5151ec16320800000000000000
+      internalID: 2549545454021826325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maejump_1
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 1703
+        width: 203
+        height: 284
+      alignment: 9
+      pivot: {x: 0.6233298, y: 0.92927486}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52aa6c9bb87b1ddf0800000000000000
+      internalID: -157142701236114907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maejump_2
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 1719
+        width: 197
+        height: 289
+      alignment: 9
+      pivot: {x: 0.58288205, y: 0.92938125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffa49cf04bf4b64d0800000000000000
+      internalID: -3140328680383231233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maejump_3
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 1739
+        width: 235
+        height: 257
+      alignment: 9
+      pivot: {x: 0.634328, y: 0.9277838}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7a772a286fcce600800000000000000
+      internalID: 499001705022061181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maejump_4
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 1756
+        width: 249
+        height: 240
+      alignment: 9
+      pivot: {x: 0.63114667, y: 0.91726583}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 723a3a6c2026a9f80800000000000000
+      internalID: -8099053215810346201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maejump_5
+      rect:
+        serializedVersion: 2
+        x: 1563
+        y: 1693
+        width: 430
+        height: 313
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 742bcc28ed6d1a150800000000000000
+      internalID: 5882218839488115271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maejump_6
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 1365
+        width: 93
+        height: 265
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c4c57a6ccf78be30800000000000000
+      internalID: 4519502742002451656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maejump_7
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 1363
+        width: 119
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8bb0568b032f3b80800000000000000
+      internalID: -8412967046499746934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maejump_8
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 1365
+        width: 153
+        height: 251
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60eb64a8ca4e3c6f0800000000000000
+      internalID: -665436890215301626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maejump_9
+      rect:
+        serializedVersion: 2
+        x: 761
+        y: 1365
+        width: 166
+        height: 224
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98173b0c39a8e8170800000000000000
+      internalID: 8182629940176581001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maejump_10
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 1368
+        width: 135
+        height: 253
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b7eaa4736146c030800000000000000
+      internalID: 3514568454624176048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maejump_11
+      rect:
+        serializedVersion: 2
+        x: 1305
+        y: 1344
+        width: 141
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c56d9d1cbc3e24490800000000000000
+      internalID: -7763392343363168676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maejump_12
+      rect:
+        serializedVersion: 2
+        x: 1549
+        y: 1300
+        width: 458
+        height: 310
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3794b0fa5e33d8450800000000000000
+      internalID: 6092582932479428979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maejump_13
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 962
+        width: 456
+        height: 310
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed6838a9fec696f40800000000000000
+      internalID: 5722224577896220382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maejump_14
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 950
+        width: 456
+        height: 310
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: add8072e27c3701b0800000000000000
+      internalID: -5690513140036366886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maejump_15
+      rect:
+        serializedVersion: 2
+        x: 1113
+        y: 942
+        width: 430
+        height: 308
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b2669841e246c790800000000000000
+      internalID: -7510241793240833352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maejump_16
+      rect:
+        serializedVersion: 2
+        x: 1590
+        y: 936
+        width: 431
+        height: 309
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 827ed72dff8f169c0800000000000000
+      internalID: -3935590821713287384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maejump_17
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 610
+        width: 455
+        height: 309
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beefc44938a9bdbe0800000000000000
+      internalID: -1451396564977385749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maejump_18
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 598
+        width: 455
+        height: 309
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0309b122038f00130800000000000000
+      internalID: 3531094993472819248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maejump_19
+      rect:
+        serializedVersion: 2
+        x: 1121
+        y: 598
+        width: 455
+        height: 309
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f18944b4a3a35ba0800000000000000
+      internalID: -6101353142362209799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maejump_20
+      rect:
+        serializedVersion: 2
+        x: 1685
+        y: 600
+        width: 221
+        height: 264
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bfefb9936b509870800000000000000
+      internalID: 8687544164537069489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maejump_21
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 237
+        width: 468
+        height: 305
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a2e634863a987320800000000000000
+      internalID: 2555962347469857447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maejump_22
+      rect:
+        serializedVersion: 2
+        x: 626
+        y: 245
+        width: 468
+        height: 306
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 825a9d2ace0475440800000000000000
+      internalID: 4924476102641558824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 7a24020dbc9b2524aa867bb46b822243
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

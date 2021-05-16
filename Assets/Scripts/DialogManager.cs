@@ -10,7 +10,7 @@ public class DialogManager : MonoBehaviour
     //gameobject stuff to turn bubble + text sprites on and off
     public GameObject dialogPrompt, dialogBox, dialogCanvas;
     private DialogDirector dialogDirector;
-    Vector3 dialogBoxOffSet = new Vector3(0,5,0);
+    [HideInInspector]public Vector3 dialogBoxOffSet = new Vector3(0,5,0); // jackie made this public
     public GameObject talkingObj;
     public characters talkingCharacter;
     //dialogBox has to be set in inspector

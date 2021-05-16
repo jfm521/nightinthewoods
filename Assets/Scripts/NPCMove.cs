@@ -36,6 +36,10 @@ public class NPCMove : MonoBehaviour
     // jackie's attempt at dialog initiation
     bool awaitingInput;
     NPCTrigger trigger;
+    GameObject mae;
+    public GameObject dialogPrompt;
+    public float dialogPromptArea;
+
 
     // Called before the first frame update
     
@@ -50,6 +54,7 @@ public class NPCMove : MonoBehaviour
 
         npcTalkative = FindGameObjectInChildWithTag(gameObject,"TalkTrigger").GetComponent<NPCTalktive>();
         dialogDirector = GameObject.Find("DialogDirector").GetComponent<DialogDirector>();
+        mae = GameObject.Find("DialogPlayer");
 
     }
 
@@ -64,11 +69,19 @@ public class NPCMove : MonoBehaviour
         //jackie's attempt at dialog initiation
         if (awaitingInput)
         {
-            if (Input.GetKeyDown(KeyCode.X))
+            if (!dialogPrompt.activeSelf && hVel == 0)
+            {
+                dialogPrompt.SetActive(true);
+            }
+            if (Input.GetKeyDown(KeyCode.X) && (mae.transform.position.x <= gameObject.transform.position.x + dialogPromptArea && mae.transform.position.x >= gameObject.transform.position.x - dialogPromptArea))
             {
                 awaitingInput = false;
                 InterpretTrigger();
+                dialogPrompt.SetActive(false);
+
             }
+
+            dialogPrompt.transform.position = gameObject.transform.position + mae.transform.GetComponent<DialogManager>().dialogBoxOffSet;
         }
     }
 

@@ -23,6 +23,6 @@ public class NPCTrigger : MonoBehaviour
     public bool load;
 
     //jackie's attempt at dialogue initiation
-    [Header ("Jackie's nonsense")]
+    [Header ("Autostart")]
     public bool autoStart;
 }

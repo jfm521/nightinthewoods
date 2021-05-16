@@ -89,6 +89,7 @@ public class DialogManager : MonoBehaviour
             }
         }
     }
+
     void PreTalking(GameObject obj)
     {
         if(!talkReady){

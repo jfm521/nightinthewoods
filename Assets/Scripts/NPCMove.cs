@@ -34,8 +34,7 @@ public class NPCMove : MonoBehaviour
     public Animator angusAnimator;
 
     // jackie's attempt at dialog initiation
-    bool autoStartOverride;
-    bool xButtonPressed;
+    bool awaitingInput;
     NPCTrigger trigger;
 
     // Called before the first frame update
@@ -61,6 +60,16 @@ public class NPCMove : MonoBehaviour
     void Update()
     {
         LocateGoal();
+
+        //jackie's attempt at dialog initiation
+        if (awaitingInput)
+        {
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                awaitingInput = false;
+                InterpretTrigger();
+            }
+        }
     }
 
 
@@ -168,9 +177,9 @@ public class NPCMove : MonoBehaviour
             /*NPCTrigger*/ trigger = other.GetComponent<NPCTrigger>();
 
             //jackie's attempt at dialog initiation
-            if (trigger.autoStart || autoStartOverride)
+            if (trigger.autoStart)
             {
-
+                InterpretTrigger();
                 /*if (trigger.startCutscene)
                     DialogDirector.StartCutscene();
                 else if (trigger.endCutscene)
@@ -200,6 +209,10 @@ public class NPCMove : MonoBehaviour
 
                 if (trigger.load)
                     SceneManager.LoadScene("StarConnect 1");*/
+            }
+            else
+            {
+                awaitingInput = true;
             }
         }
     }

@@ -28,12 +28,15 @@ public class DialogManager : MonoBehaviour
     private float typingSpeedFast = 0.0008f; 
     private float typingSpeed; //typing speed set in start, spaghetti typing speed solution
     private string dialogPath = "None";
-    private StreamReader reader;
+    //private StreamReader reader;
     string lineText = "-";
+    public List<string> textLineList = new List<string>();
     int currChoice = 0;
     string[] choiceArr = new string[1];
     bool isChoosing = false;
     public Color[] colorArr = new Color[4];//Colors of text for characters
+    private TextAsset txt;
+    private int dialogListIndex;
 
     //sounds
     AudioSource talkAudSource;
@@ -123,13 +126,25 @@ public class DialogManager : MonoBehaviour
     }
     void StartTalking()
     {
-        reader = new StreamReader(dialogPath); //Reader read dialog txt
+        txt = (TextAsset)Resources.Load(dialogPath);
+        textLineList = new List<string>(txt.text.Split('\n'));
+        dialogListIndex = 0;
         NextSentence();
 
         dialogBox.SetActive(true);
         dialogPrompt.SetActive(false);
         
-        talkingObj = touchingObj;
+        if(textLineList[0].Substring(0,2) == "M:") //Mae's line
+        {
+            talkingObj = gameObject;
+            textDisplay.color = colorArr[0];
+        }
+        else if(textLineList[0].Substring(0,2) == "A:") //Angus's line
+        {
+            talkingObj = touchingObj; //ANGUS
+            textDisplay.color = colorArr[1];
+        }
+
         DialogDirector.isTalking = true;
         //talkingCharacter = touchingObj.GetComponent<NPCTalktive>().characterSelect;
         
@@ -164,7 +179,8 @@ public class DialogManager : MonoBehaviour
     public void NextSentence(){
         canContinue = false; //stops the player from going to the next sentence before its done
 
-        lineText = reader.ReadLine(); //get next sentence
+        lineText = textLineList[dialogListIndex]; //get next sentence
+        dialogListIndex++;
         if(lineText != "<END>"){ 
             if(lineText.Substring(0,2) == "M:") //Mae's line
             {
@@ -184,7 +200,6 @@ public class DialogManager : MonoBehaviour
             talkAudSource.Play();
         }
         else { //End of dialog
-            reader.Close(); //Close reader
             canContinue = false;
             //hide the big bubble too
             dialogBox.SetActive(false);
@@ -249,16 +264,11 @@ public class DialogManager : MonoBehaviour
         isTalking = false;
         inCutscene = false;
         dialogPath = "None";
-        reader.Close();
         lineText = "-";
     }
     void StartTopDown()
     {
 
-    }
-    void OnDisabled()
-    {
-        reader.Close();
     }
 }
 

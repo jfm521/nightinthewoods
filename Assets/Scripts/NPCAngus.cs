@@ -22,24 +22,25 @@ using UnityEngine.UI;
         public bool debugMode;
         private static string sectionEnd = "ENDOFSECTION";
         private static string cutsceneSpot = "CUTSCENESPOT";
+        private static string pathToText = "Dialogs/Angus/";
         //string NPCName = "Angus";
         void Awake()
         {
             dialogArrSectionName[0] = "Graveyard";
-            dialogArr[0,0] = "Assets/Resources/Dialogs/Angus/"+dialogArrSectionName[0]+"/AngusDialogGraveyard1.txt";
-            dialogArr[0,1] = "Assets/Resources/Dialogs/Angus/"+dialogArrSectionName[0]+"/AngusDialogGraveyard2.txt";
-            dialogArr[0,2] = "Assets/Resources/Dialogs/Angus/"+dialogArrSectionName[0]+"/AngusDialogGraveyard3.txt";
+            dialogArr[0,0] = pathToText+dialogArrSectionName[0]+"/AngusDialogGraveyard1";
+            dialogArr[0,1] = pathToText+dialogArrSectionName[0]+"/AngusDialogGraveyard2";
+            dialogArr[0,2] = pathToText+dialogArrSectionName[0]+"/AngusDialogGraveyard3";
             dialogArr[0,3] = sectionEnd;
             //Don't need rest
             dialogArrSectionName[1] = "(Load)StarGazing";
             dialogArr[1,0] = "StarConnect"; //Scene name
             dialogArr[1,1] = sectionEnd;
             dialogArrSectionName[2] = "(Brch)StarGazing";
-            dialogArr[2,0] = "Assets/Resources/Dialogs/Angus/"+dialogArrSectionName[2]+"/AngusDialogStarsStart.txt";
-            dialogArr[2,1] = "Assets/Resources/Dialogs/Angus/"+dialogArrSectionName[2]+"/AngusDialogStarsPope.txt";
-            dialogArr[2,2] = "Assets/Resources/Dialogs/Angus/"+dialogArrSectionName[2]+"/AngusDialogStarsWhale.txt";
-            dialogArr[2,3] = "Assets/Resources/Dialogs/Angus/"+dialogArrSectionName[2]+"/AngusDialogStarsBell.txt";
-            dialogArr[2,4] = "Assets/Resources/Dialogs/Angus/"+dialogArrSectionName[2]+"/AngusDialogStarsThief.txt";
+            dialogArr[2,0] = pathToText+dialogArrSectionName[2]+"/AngusDialogStarsStart";
+            dialogArr[2,1] = pathToText+dialogArrSectionName[2]+"/AngusDialogStarsPope";
+            dialogArr[2,2] = pathToText+dialogArrSectionName[2]+"/AngusDialogStarsWhale";
+            dialogArr[2,3] = pathToText+dialogArrSectionName[2]+"/AngusDialogStarsBell";
+            dialogArr[2,4] = pathToText+dialogArrSectionName[2]+"/AngusDialogStarsThief";
             dialogArrSectionName[3] = "StarGazing";
             dialogArr[3,0] = "Assets/Resources/Dialogs/Angus/"+dialogArrSectionName[3]+"/AngusDialogStarsEnd.txt";
             dialogArr[3,1] = "Assets/Resources/Dialogs/Angus/"+dialogArrSectionName[3]+"/AngusDialogStarsEnd1.txt";

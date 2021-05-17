@@ -33,6 +33,14 @@ public class NPCMove : MonoBehaviour
     bool moveAfterTalk;
     public Animator angusAnimator;
 
+    // jackie's attempt at dialog initiation
+    bool awaitingInput;
+    NPCTrigger trigger;
+    GameObject mae;
+    public GameObject dialogPrompt;
+    public float dialogPromptArea;
+
+
     // Called before the first frame update
     
     void Awake()
@@ -46,6 +54,7 @@ public class NPCMove : MonoBehaviour
 
         npcTalkative = FindGameObjectInChildWithTag(gameObject,"TalkTrigger").GetComponent<NPCTalktive>();
         dialogDirector = GameObject.Find("DialogDirector").GetComponent<DialogDirector>();
+        mae = GameObject.Find("DialogPlayer");
 
     }
 
@@ -56,6 +65,24 @@ public class NPCMove : MonoBehaviour
     void Update()
     {
         LocateGoal();
+
+        //jackie's attempt at dialog initiation
+        if (awaitingInput)
+        {
+            if (!dialogPrompt.activeSelf && hVel == 0)
+            {
+                dialogPrompt.SetActive(true);
+            }
+            if (Input.GetKeyDown(KeyCode.X) && (mae.transform.position.x <= gameObject.transform.position.x + dialogPromptArea && mae.transform.position.x >= gameObject.transform.position.x - dialogPromptArea))
+            {
+                awaitingInput = false;
+                InterpretTrigger();
+                dialogPrompt.SetActive(false);
+
+            }
+
+            dialogPrompt.transform.position = gameObject.transform.position + mae.transform.GetComponent<DialogManager>().dialogBoxOffSet;
+        }
     }
 
 
@@ -158,38 +185,85 @@ public class NPCMove : MonoBehaviour
         {
             tempMoveTo = null;
             moveAfterTalk = false;
-            NPCTrigger trigger = other.GetComponent<NPCTrigger>();
 
-            if(trigger.startCutscene)
-                DialogDirector.StartCutscene();
-            else if(trigger.endCutscene)
-                DialogDirector.EndCutscene();
+            //jackie's dialog stuff, set npctrigger above so it's referenceable in different scripts
+            /*NPCTrigger*/ trigger = other.GetComponent<NPCTrigger>();
 
-            if(trigger.talk){
-                DialogDirector.AutoTalk(npcTalkative.characterSelect);
-                if(trigger.moveAfterTalk)
-                {
-                    moveAfterTalk = true;
-                    tempMoveTo = trigger.moveTo;
-                }
-            }
-            if(trigger.stop)
-                StopWalking();
-            else if(trigger.move)
-                WalkTowards(trigger.moveTo.transform.position.x);
-            else if(trigger.progPlot)
-                DialogDirector.ProgressPlot(npcTalkative.characterSelect);
-
-            if(trigger.setTalkable)
+            //jackie's attempt at dialog initiation
+            if (trigger.autoStart)
             {
-                if(trigger.talkable)
-                    FindGameObjectInChildWithTag(gameObject, "TalkTrigger").GetComponent<NPCTalktive>().talkable = trigger.talkable;
-            }
+                InterpretTrigger();
+                /*if (trigger.startCutscene)
+                    DialogDirector.StartCutscene();
+                else if (trigger.endCutscene)
+                    DialogDirector.EndCutscene();
 
-            if(trigger.load)
-                SceneManager.LoadScene("StarConnect 1");
+                if (trigger.talk)
+                {
+                    DialogDirector.AutoTalk(npcTalkative.characterSelect);
+                    if (trigger.moveAfterTalk)
+                    {
+                        moveAfterTalk = true;
+                        tempMoveTo = trigger.moveTo;
+                    }
+                }
+                if (trigger.stop)
+                    StopWalking();
+                else if (trigger.move)
+                    WalkTowards(trigger.moveTo.transform.position.x);
+                else if (trigger.progPlot)
+                    DialogDirector.ProgressPlot(npcTalkative.characterSelect);
+
+                if (trigger.setTalkable)
+                {
+                    if (trigger.talkable)
+                        FindGameObjectInChildWithTag(gameObject, "TalkTrigger").GetComponent<NPCTalktive>().talkable = trigger.talkable;
+                }
+
+                if (trigger.load)
+                    SceneManager.LoadScene("StarConnect 1");*/
+            }
+            else
+            {
+                awaitingInput = true;
+            }
         }
     }
+
+    //jackie's attempt at dialog initiation; moved this here from OnTriggerEnter2D
+    void InterpretTrigger()
+    {
+        if (trigger.startCutscene)
+            DialogDirector.StartCutscene();
+        else if (trigger.endCutscene)
+            DialogDirector.EndCutscene();
+
+        if (trigger.talk)
+        {
+            DialogDirector.AutoTalk(npcTalkative.characterSelect);
+            if (trigger.moveAfterTalk)
+            {
+                moveAfterTalk = true;
+                tempMoveTo = trigger.moveTo;
+            }
+        }
+        if (trigger.stop)
+            StopWalking();
+        else if (trigger.move)
+            WalkTowards(trigger.moveTo.transform.position.x);
+        else if (trigger.progPlot)
+            DialogDirector.ProgressPlot(npcTalkative.characterSelect);
+
+        if (trigger.setTalkable)
+        {
+            if (trigger.talkable)
+                FindGameObjectInChildWithTag(gameObject, "TalkTrigger").GetComponent<NPCTalktive>().talkable = trigger.talkable;
+        }
+
+        if (trigger.load)
+            SceneManager.LoadScene("StarConnect 1");
+    }
+
     public void StartTopDown()
     {
         moveAfterTalk = false;

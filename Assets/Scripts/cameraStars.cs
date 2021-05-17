@@ -9,11 +9,12 @@ public class CameraStars : CameraFollow
     bool isMovable;
     void Update()
     {
+        Debug.Log(isMovable);
     }
 
     void FixedUpdate()
-    {   
-        if(!isCutscene)
+    {
+        if (!isCutscene)
         {
             camY = Mathf.Clamp(followTransform.position.y, yMin + camSize, yMax - camSize);
             camX = Mathf.Clamp(followTransform.position.x, xMin + camSize, xMax - camSize);
@@ -26,7 +27,7 @@ public class CameraStars : CameraFollow
         {
             smoothPos = gameObject.transform.position;
         }
-        
+
         gameObject.transform.position = smoothPos;
     }
 
@@ -36,6 +37,7 @@ public class CameraStars : CameraFollow
         {
             isMovable = false;
         }
+        Debug.Log("Enter collision");
     }
 
     void OnTriggerExit2D(Collider2D collision)
@@ -44,5 +46,6 @@ public class CameraStars : CameraFollow
         {
             isMovable = true;
         }
+        Debug.Log("Exit collision");
     }
 }

@@ -196,11 +196,8 @@ public class DialogManager : MonoBehaviour
             //hide the big bubble too
             dialogBox.SetActive(false);
             EndTalking();
-<<<<<<< HEAD
-=======
             animator.SetBool("IsTalking", false);
             animator.SetBool("AngusTalking", false);
->>>>>>> 8ea934588d2530ba1f369adba78a1a58a12a5199
         }
     }
 

@@ -30,6 +30,8 @@ public class starConnect : MonoBehaviour
 
     // Changes the star's size when moused over
     bool big;
+    //Animator stuff
+    public Animator Animator;
 
     // Start is called before the first frame update
     void Start()
@@ -87,22 +89,6 @@ public class starConnect : MonoBehaviour
             connectedLine.SetPosition(1, new Vector3(starFriend1.gameObject.transform.position.x - gameObject.transform.position.x, starFriend1.gameObject.transform.position.y - gameObject.transform.position.y));
         }
 
-        // Changes star size if moused over
-        if (big && !(starFriend1Connected && starFriend2Connected))
-        {
-            if (gameObject.transform.localScale.x < 1.5 && gameObject.transform.localScale.y < 1.5)
-            {
-                gameObject.transform.localScale += new Vector3(.05f, .05f);
-            }
-        }
-        else
-        {
-            if (gameObject.transform.localScale.x > 1 && gameObject.transform.localScale.y > 1)
-            {
-                gameObject.transform.localScale -= new Vector3(.1f, .1f);
-            }
-        }
-
     }
 
     // When mouse is clicked while touching star, connect or cancel
@@ -111,6 +97,7 @@ public class starConnect : MonoBehaviour
         if (collision.tag == "Pointer") 
         {
             big = true;
+            Animator.SetBool("MouseOver", true);
             if (Input.GetMouseButton(0))
             {
                 if (collision.GetComponent<pointerMove>().isConnecting)
@@ -137,6 +124,7 @@ public class starConnect : MonoBehaviour
         if (collision.tag == "Pointer")
         {
             big = false;
+            Animator.SetBool("MouseOver", false);
         }
     }
 }

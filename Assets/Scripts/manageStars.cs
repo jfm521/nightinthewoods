@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class manageStars : MonoBehaviour
 {
@@ -38,7 +39,13 @@ public class manageStars : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Tab))
+        // Debug
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            SceneManager.LoadScene(0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             cons1Done = true;
             cons2Done = true;

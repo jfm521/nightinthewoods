@@ -40,9 +40,9 @@ using UnityEngine.UI;
             dialogArr[2,2] = "Assets/Resources/Dialogs/Angus/"+dialogArrSectionName[2]+"/AngusDialogStarsWhale.txt";
             dialogArr[2,3] = "Assets/Resources/Dialogs/Angus/"+dialogArrSectionName[2]+"/AngusDialogStarsBell.txt";
             dialogArr[2,4] = "Assets/Resources/Dialogs/Angus/"+dialogArrSectionName[2]+"/AngusDialogStarsThief.txt";
-            dialogArrSectionName[3] = "StarGazing";
-            dialogArr[3,0] = "Assets/Resources/Dialogs/Angus/"+dialogArrSectionName[3]+"/AngusDialogStarsEnd.txt";
-            dialogArr[3,1] = "Assets/Resources/Dialogs/Angus/"+dialogArrSectionName[3]+"/AngusDialogStarsEnd1.txt";
+            dialogArrSectionName[3] = "(Load)EndingScene";
+            dialogArr[3,0] = "EndScene";
+            dialogArr[3,1] = sectionEnd;
             plotProg.Add(plotKey.SectionIndex,0);
             plotProg.Add(plotKey.DialogIndex,0);
         }

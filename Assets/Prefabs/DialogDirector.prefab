@@ -44,13 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87311756b9ba926418f6673bc4eb598a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plotProg: 0
-  dialogArr:
-  - 
-  - 
-  - 
-  - 
-  - 
+  debugText: {fileID: 0}
+  debugMode: 0
 --- !u!114 &5589211937075158009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,3 +58,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8c83a6dafb045469aaa7c7fc4e8472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  angusDialog: {fileID: 0}
+  angusMove: {fileID: 0}
+  angusObject: {fileID: 1602470840431878203, guid: 376e99c7a6b43ce40ae638da4f978e95,
+    type: 3}
+  autoStart: 0
+  autoMostDist: 0
+  onBranch: 0

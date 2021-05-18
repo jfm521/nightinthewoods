@@ -254,9 +254,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 562a96df4501a4815b85026231fbfcf7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 70a0cc594932a6645afbda3adfc69027, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.82
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1628,7 +1628,7 @@ PrefabInstance:
         type: 3}
       propertyPath: clip
       value: 
-      objectReference: {fileID: 8300000, guid: f0ce7208e908341399ace113212d9158, type: 3}
+      objectReference: {fileID: 8300000, guid: 61fa667a7fe67c74080d80684a33e1d4, type: 3}
     - target: {fileID: 3061507168311620693, guid: b4de83742ed65d341ae67de2ddd1f3d7,
         type: 3}
       propertyPath: animator
@@ -9647,8 +9647,8 @@ MonoBehaviour:
   maxTripleJumpTimer: 6
   angus: {fileID: 1223902957}
   clips:
-  - {fileID: 8300000, guid: 959e2ad369c32460486772e9575e699a, type: 3}
-  - {fileID: 8300000, guid: b9820c5f784094c17a6f0b5c18ea8cb4, type: 3}
+  - {fileID: 8300000, guid: 54d02cbcb2222c544b32e9ee3f02074f, type: 3}
+  - {fileID: 8300000, guid: 92881d72e9c377445bd9f010b91d1c50, type: 3}
   animator: {fileID: 1183601435}
 --- !u!212 &1183601433
 SpriteRenderer:

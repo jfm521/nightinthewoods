@@ -10,7 +10,7 @@ public class DialogManager : MonoBehaviour
     //gameobject stuff to turn bubble + text sprites on and off
     public GameObject dialogPrompt, dialogBox, dialogCanvas;
     private DialogDirector dialogDirector;
-    Vector3 dialogBoxOffSet = new Vector3(0,5,0);
+    [HideInInspector]public Vector3 dialogBoxOffSet = new Vector3(0,5,0); // jackie made this public
     public GameObject talkingObj;
     public characters talkingCharacter;
     //dialogBox has to be set in inspector
@@ -54,7 +54,7 @@ public class DialogManager : MonoBehaviour
         
         dialogDirector = GameObject.Find("DialogDirector").GetComponent<DialogDirector>();
         dialogBox.SetActive(false);
-        dialogPrompt.SetActive(false);
+        //dialogPrompt.SetActive(false);
 
         typingSpeed = typingSpeedNormal; //set default typing speed
 
@@ -89,11 +89,12 @@ public class DialogManager : MonoBehaviour
             }
         }
     }
+
     void PreTalking(GameObject obj)
     {
         if(!talkReady){
-            dialogPrompt.SetActive(true);
-            dialogPrompt.transform.position = obj.transform.position + dialogBoxOffSet;
+            //dialogPrompt.SetActive(true);
+            //dialogPrompt.transform.position = obj.transform.position + dialogBoxOffSet;
             
             
             //Prepare to talk
@@ -129,7 +130,7 @@ public class DialogManager : MonoBehaviour
         NextSentence();
 
         dialogBox.SetActive(true);
-        dialogPrompt.SetActive(false);
+        //dialogPrompt.SetActive(false);
         
         talkingObj = touchingObj;
         DialogDirector.isTalking = true;
@@ -207,7 +208,7 @@ public class DialogManager : MonoBehaviour
             if(other.gameObject.tag == "TalkTrigger"){ //if player is no longer touching the npc collider
                 touchingObj = null;    
                 talkReady = false;
-                dialogPrompt.SetActive(false);
+                //dialogPrompt.SetActive(false);
                 Debug.Log("not touching NPC anymore");
             }
         }

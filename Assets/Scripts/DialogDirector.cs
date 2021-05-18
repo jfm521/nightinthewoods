@@ -59,6 +59,10 @@ public class DialogDirector : MonoBehaviour
             {
                 SceneManager.LoadScene(NPCAngus.dialogArr[NPCAngus.plotProg[plotKey.SectionIndex],NPCAngus.plotProg[plotKey.DialogIndex]]);
             }
+            if (NPCAngus.plotProg[plotKey.SectionIndex] == 3)
+            {
+                SceneManager.LoadScene(NPCAngus.dialogArr[NPCAngus.plotProg[plotKey.SectionIndex], NPCAngus.plotProg[plotKey.DialogIndex]]);
+            }
         }
         angusObject.GetComponent<Animator>().SetBool("isTalking", isTalking);
         /*if(NPCAngus.plotProg[plotKey.SectionIndex] == 2)
@@ -66,19 +70,24 @@ public class DialogDirector : MonoBehaviour
             CameraStars.isCutscene = true;
             CameraStars.GoTo(GameObject.Find("Constellation 1").transform.position);
         }*/
+            
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if(NPCAngus.dialogArrSectionName[NPCAngus.plotProg[plotKey.SectionIndex]].Substring(0,6)=="(Load)")
         {
-            //Camera.main.GetComponent<CameraFollow>().isCutscene = true;
-            angusMove.StartTopDown();
-            
-            dialogManager.StartTopDown(GameObject.Find("MaePos").transform.position);
-            ProgressPlot(characters.Angus);
-            AutoTalk(characters.Angus);
-            onBranch = true;
+            if (NPCAngus.plotProg[plotKey.SectionIndex] == 1)
+            {
+                //Camera.main.GetComponent<CameraFollow>().isCutscene = true;
+                angusMove.StartTopDown();
+
+                dialogManager.StartTopDown(GameObject.Find("MaePos").transform.position);
+                ProgressPlot(characters.Angus);
+                AutoTalk(characters.Angus);
+                onBranch = true;
+            }
+
         }
     }
     public static void StartCutscene()

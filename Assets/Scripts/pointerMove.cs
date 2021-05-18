@@ -46,18 +46,12 @@ public class pointerMove : MonoBehaviour
                 isConnecting = false;
             }*/
 
-            Debug.Log("CONNECTING");
+            //Debug.Log("CONNECTING");
         }
 
-    }
-
-
-
-
-    void FixedUpdate()
-    {
         // Moves the hand to the mouse's position
         myCollider.transform.position = cam.ScreenToWorldPoint(Input.mousePosition);
+
     }
 
 

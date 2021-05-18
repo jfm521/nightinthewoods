@@ -2,29 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cameraFollow : MonoBehaviour
+public class CameraFollow : MonoBehaviour
 {
 
     public Transform followTransform;
     public BoxCollider2D worldBounds;
 
-    float xMin;
-    float xMax;
-    float yMin;
-    float yMax;
+    protected float xMin;
+    protected float xMax;
+    protected float yMin;
+    protected float yMax;
 
-    float camX;
-    float camY;
+    static float camX;
+    static float camY;
 
-    float camRatio;
-    float camSize;
+    protected float camRatio;
+    protected float camSize;
 
-    Camera mainCam;
+    protected Camera mainCam;
 
-    Vector3 smoothPos;
+    protected Vector3 smoothPos;
 
     public float smoothRate; 
-
+    public static bool isCutscene;
 
     // Start is called before the first frame update
     void Start()
@@ -49,11 +49,18 @@ public class cameraFollow : MonoBehaviour
     }
 
     void FixedUpdate(){
+    if(!isCutscene)
+    {
         camY = Mathf.Clamp(followTransform.position.y, yMin + camSize, yMax - camSize);
         camX = Mathf.Clamp(followTransform.position.x, xMin + camSize, xMax - camSize);
-
+    }
         smoothPos = Vector3.Lerp(gameObject.transform.position, new Vector3(camX, camY, gameObject.transform.position.z), smoothRate);
         
         gameObject.transform.position = smoothPos;
     }
+    public static void GoTo(Vector3 position)
+    {
+        camX = position.x;
+        camY = position.y;
+   }
 }
